@@ -29,9 +29,29 @@
 %\listoftables
 
 %% These include the actual text
-\include{chapter1}
-\include{chapter2}
-\include{chapter3}
+
+\chapter{Introduction}
+
+The theory of computation has been extensively developed during the last few decades. Computers have provided reliable solutions for a myriad of community's seemingly unsolvable problems. Notwithstanding, various complicated problems have been continuously introduced to society as it never stops growing and becomes more complex. Even though technology nowadays has been steady advancing to approach the demands of society, whereas such steady progress has its limitation since many of those problems are intricate to model or appear to require time-intensive solutions. This phenomenon implies to the necessity of a new computing revolution since classical computation no longer has an ability to reach the increased demand. \\\\
+According to Moore's law, the computational power of computers would dramatically increase approximately every two years \cite{moore}. The theory can be proven real since the size of transistors has rapidly become smaller to a few nanometres \cite{qc-info}. This results in a higher number of transistors mounted on an integrated circuit. The laws of classical physics do not function with objects with such small size. Thus, quantum computing becomes a next solution to deal with these complex problems. \\\\
+Quantum computing is the revolution. It is a relatively new field of research which has the potential to introduce the world of computing to a new stage where certain computationally intense problems can be solved with a shorter amount of processing time. One can consider quantum computing as the art of utilising all the possibilities that the laws of quantum physics contribute to solving computational problems while classical computers merely use a minuscule subset of these possibilities. However, quantum computers are not a replacement for conventional computers as quantum mechanics only improve the computing efficiency for certain types of computation. \\\\
+This research report delivers a brief glimpse into the world of quantum computers and the laws of quantum mechanics applied to this entirely new type of computer. It will also introduce the fundamental concepts of the field along with exploring quantum computing in practice using Language-Integrated Quantum Operations (LIQUi$\mid\rangle$). This report concludes with experience evaluation in the quantum computing research in relation to the content of the unit (Programming Paradigms).
+
+\chapter{Early History}
+In the early 1980s, physicist Richard Freyman recognised that it was not possible for phenomena associated with entangled particles (quantum phenomena) to be efficiently simulated on classical computers \cite{qc}. Freyman was the first who suggested that quantum-mechanical systems might have higher computational power than conventional computers. \\\\
+In the same decade, Paul Benioff proved that quantum-mechanical systems were at least as powerful as classical computers because Turing machines could be modelled with such system \cite{qc-sci}. \\\\
+In 1985, David Deutsch, of Oxford, published the paper "Quantum theory, the Church-Turing principle and the universal quantum computer" \cite{universal-qc}. Deutsch claimed that the universal Turing machine has superior abilities compared with Turing machine, including random number generation, parallelism and physical system simulation with finite-dimensional state spaces. \\\\
+Another of Deutsch's paper "Quantum computational networks" \cite{qc-networks} was published in 1989. The article proved that quantum circuits are as powerful as the universal Turing machine. Deutsch also introduced the first truly quantum algorithm in 1990, namely Deutsch's algorithm which later was generalised to the Deutsch-Jozsa algorithm. \\\\
+In 1993, Andrew Chi-Chih Yao extended Deutsch's paper "Quantum computational networks" \cite{circuit-complexity} in the paper "Quantum circuit complexity" by addressing the complexity of quantum computation according to Deutsch's work. Yao's findings indicated quantum computing researchers to concentrate on quantum circuits instead of quantum Turing machine. \\\\
+Peter Shor proposed another quantum algorithm in 1994. This algorithm uses the concept of qubit entanglement and superposition for integer factorisation \cite{intro-qc}. In principle, executing the algorithm on a quantum computer would far surpass the efficiency of all classical computers. \\\\
+The University of California at Berkeley, MIT, Harvard University, and IBM researchers conducted an experiment using nuclear magnetic resonance (NMR) to manipulate quantum data in liquids. The team also developed a 2-bit quantum computer with radio frequency as its input. Afterwards, a new quantum algorithm that executes on quantum computers was introduced by Lov Grover of Bell Laboratories in 1996 by the name Grover's quantum algorithm \cite{intro-qc}. \\\\
+In 1998, researchers at the University Innsbruck in Austria put the idea of quantum teleportation \cite{teleport}, proposed in 1993, into practice. The theorem demonstrates the concept of entanglement and teleportation. This research is an implication for data transfer and network in the quantum system.
+
+\begingroup
+\renewcommand{\cleardoublepage}{}
+\renewcommand{\clearpage}{}
+\chapter{Making a bibliography}
+\endgroup
 
 \bibliography{refs} % this causes the references to be listed
 \bibliographystyle{apalike} % bibliography style
