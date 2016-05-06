@@ -1,0 +1,42 @@
+\documentclass[12pt]{third-rep}
+
+\usepackage{url} % typeset URL's sensibly
+
+\usepackage{pslatex} % Use Postscript fonts
+
+\title{CAB402 Programming Paradigms \\ \vspace{2 mm} {Quantum Computing}}
+\author{Thanat Chokwijitkul n9234900}
+\date{}
+
+\usepackage{pslatex} % sets up the use of PostScript fonts
+
+\renewcommand{\bibname}{References} % changes to references
+
+\usepackage{listings}
+
+\usepackage{titlesec}
+\titleformat{\chapter}{\normalfont\huge\bf}{\thechapter.}{20pt}{\huge\bf}
+
+%% End of preamble, the actual document starts here
+
+\begin{document}
+
+\maketitle % creates the title
+
+%% Generate contents etc
+\tableofcontents
+%\listoffigures
+%\listoftables
+
+%% These include the actual text
+\include{chapter1}
+\include{chapter2}
+\include{chapter3}
+
+\bibliography{refs} % this causes the references to be listed
+\bibliographystyle{apalike} % bibliography style
+
+%% Appendices start here
+\appendix
+\include{appendix1}
+\end{document}
