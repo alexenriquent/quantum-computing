@@ -39,7 +39,7 @@
 
 The theory of computation has been extensively developed during the last few decades. Computers have provided reliable solutions for a myriad of community's seemingly unsolvable problems. Notwithstanding, various complicated problems have been continuously introduced to society as it never stops growing and becomes more complex. Even though technology nowadays has been steady advancing to approach the demands of society, whereas such steady progress has its limitation since many of those problems are intricate to model or appear to require time-intensive solutions. This phenomenon implies to the necessity of a new computing revolution since classical computation no longer has an ability to reach the increased demand. \\\\
 According to Moore's law, the computational power of computers would dramatically increase approximately every two years \cite{moore}. The theory can be proven real since the size of transistors has rapidly become smaller to a few nanometres \cite{qc-info}. This results in a higher number of transistors mounted on an integrated circuit. The laws of classical physics do not function with objects with such small size. Thus, quantum computing becomes a next solution to deal with these complex problems. \\\\
-Quantum computing is the revolution. It is a relatively new field of research which has the potential to introduce the world of computing to a new stage where certain computationally intense problems can be solved with a shorter amount of processing time. One can consider quantum computing as the art of utilising all the possibilities that the laws of quantum physics contribute to solving computational problems while classical computers merely use a minuscule subset of these possibilities. However, quantum computers are not a replacement for conventional computers as quantum mechanics only improve the computing efficiency for certain types of computation. \\\\
+Quantum computing is the revolution. Although it is a relatively new field of research, this technology has the potential to introduce the world of computing to a new stage where certain computationally intense problems can be solved with a shorter amount of processing time. One can consider quantum computing as the art of utilising all the possibilities that the laws of quantum physics contribute to solving computational problems while classical computers merely use a minuscule subset of these possibilities. However, quantum computers are not a replacement for conventional computers as quantum mechanics only improve the computing efficiency for certain types of computation. \\\\
 This research report delivers a brief glimpse into the world of quantum computers and the laws of quantum mechanics applied to this entirely new type of computer. It will also introduce the fundamental concepts of the field along with exploring quantum computing in practice using Language-Integrated Quantum Operations (LIQUi$\ket{}$). This report concludes with experience evaluation in the quantum computing research in relation to the content of the unit (Programming Paradigms).
 
 \chapter{Early History}
@@ -49,7 +49,7 @@ In 1985, David Deutsch, of Oxford, published the paper "Quantum theory, the Chur
 Another of Deutsch's paper "Quantum computational networks" \cite{qc-networks} was published in 1989. The article proved that quantum circuits are as powerful as the universal Turing machine. Deutsch also introduced the first truly quantum algorithm in 1990, namely Deutsch's algorithm which later was generalised to the Deutsch-Jozsa algorithm. \\\\
 In 1993, Andrew Chi-Chih Yao extended Deutsch's paper "Quantum computational networks" \cite{circuit-complexity} in the paper "Quantum circuit complexity" by addressing the complexity of quantum computation according to Deutsch's work. Yao's findings indicated quantum computing researchers to concentrate on quantum circuits instead of quantum Turing machine. \\\\
 Peter Shor proposed another quantum algorithm in 1994. This algorithm uses the concept of qubit entanglement and superposition for integer factorisation \cite{intro-qc}. In principle, executing the algorithm on a quantum computer would far surpass the efficiency of all classical computers. \\\\
-The University of California at Berkeley, MIT, Harvard University, and IBM researchers conducted an experiment using nuclear magnetic resonance (NMR) to manipulate quantum data in liquids. The team also developed a 2-bit quantum computer with radio frequency as its input. Afterwards, a new quantum algorithm that executes on quantum computers was introduced by Lov Grover of Bell Laboratories in 1996 by the name Grover's quantum algorithm \cite{intro-qc}. \\\\
+The University of California, Harvard University, Massachusetts Institute of Technology and IBM researchers conducted an experiment using nuclear magnetic resonance (NMR) to manipulate quantum data in liquids. The team also developed a 2-bit quantum computer with radio frequency as its input. Afterwards, a new quantum algorithm that executes on quantum computers was introduced by Lov Grover of Bell Laboratories in 1996 by the name Grover's quantum algorithm \cite{intro-qc}. \\\\
 In 1998, researchers at the University Innsbruck in Austria put the idea of quantum teleportation \cite{teleport}, proposed in 1993, into practice. The theorem demonstrates the concept of entanglement and teleportation. This research is an implication for data transfer and network in the quantum system.
 
 \begingroup
@@ -77,27 +77,27 @@ $$\equiv\sum_{x=0}^{7}\ket{x}$$
 
 In order to explain the concept of quantum gates, the basis states must be represented differently from the previous section. Since matrix transformations will be used to demonstrate the concept of each gate, each qubit state will be represented by any two orthogonal unit column vectors as follows: 
 \[
-0=
+\ket{0}=
 \begin{bmatrix}
     1 \\
     0 
 \end{bmatrix}
-,1=
+,\ket{1}=
 \begin{bmatrix}
     0 \\
     1 
 \end{bmatrix}
 \]
-In this case, the name 0 and 1 are the representations of logical zero and logical one respectively. The qubit's actual state $\Psi$ or its superposition can be represented by
+In this case, the state $\ket{0}$ and $\ket{1}$ are the representations of logical zero and logical one respectively. The qubit's actual state $\ket{\Psi}$ or its superposition can be represented by
 \[
-\Psi=\alpha0+\beta1=
+\ket{\Psi}=\alpha\ket{0}+\beta\ket{1}=
 \begin{bmatrix}
     \alpha \\
     \beta 
 \end{bmatrix}
 \]
 \subsection{Quantum Gates}
-Each quantum gate can be represented by a square matrix. It also needs to be unitary since being unitary will preserve the unit length of the state vector $\Psi$ after matrix multiplication and the new state must meet the normalisation criteria $|\alpha|^2+|\beta|^2=1$. Thus, given the $2\times2$ identity matrix $I$, the output state will remain in the same state. 
+Each quantum gate can be represented by a square matrix. It also needs to be unitary since being unitary will preserve the unit length of the state vector $\ket{\Psi}$ after matrix multiplication and the new state must meet the normalisation criteria $|\alpha|^2+|\beta|^2=1$. Thus, given the $2\times2$ identity matrix $I$, the output state will remain in the same state. 
 \[
 I=
 \begin{bmatrix}
@@ -106,7 +106,7 @@ I=
 \end{bmatrix}
 \] 
 \[
-I\Psi=
+I\ket{\Psi}=
 \begin{bmatrix}
     1 & 0 \\
     0 & 1 
@@ -120,7 +120,7 @@ I\Psi=
     \alpha \\
     \beta 
 \end{bmatrix}
-=\Psi
+=\ket{\Psi}
 \] \\
 The matrix multiplication yields a new qubit state which is identical to the input state. This kind of quantum gate can be represented by a single wire as the following:
 $$\Qcircuit @C=5em @R=.7em { & \qw}$$
@@ -135,7 +135,7 @@ X=
 \end{bmatrix}
 \] 
 \[
-X\Psi=
+X\ket{\Psi}=
 \begin{bmatrix}
     0 & 1 \\
     1 & 0 
@@ -185,38 +185,38 @@ $$\Qcircuit @C=3em @R=.7em {& \gate{H} & \qw}$$
 Each qubit has its own quantum state. However, two or more qubits can act on one another which leads to the formation of an entangled system. When qubit states are entangled, it needs to be treated as the entire system or overall state, instead of individual quantum state. For example, given a two-bit system, it can be any integer between the range 0 and 3 inclusive as the following:
 $$\ket{00}+\ket{01}+\ket{10}+\ket{11}$$
 Thus, its normalised superposition can be expressed as
-$$\Psi=\alpha00+\beta01+\gamma10+\delta11$$
+$$\ket{\Psi}=\alpha\ket{00}+\beta\ket{01}+\gamma\ket{10}+\delta\ket{11}$$
 This rule also needs to meet the condition $|\alpha|^2+|\beta|^2+|\gamma|^2+|\delta|^2=1$. Thus, given an arbitrary set of orthogonal column vectors, each vector represents a possible quantum state, it should yield a new column vector with multi-qubit states.
 \[
-00=
+\ket{00}=
 \begin{bmatrix}
     1 \\
     0 \\
     0 \\
     0
 \end{bmatrix}
-,01=
+,\ket{01}=
 \begin{bmatrix}
     0 \\
     1 \\
     0 \\
     0
 \end{bmatrix}
-,10=
+,\ket{10}=
 \begin{bmatrix}
     0 \\
     0 \\
     1 \\
     0
 \end{bmatrix}
-,11=
+,\ket{11}=
 \begin{bmatrix}
     0 \\
     0 \\
     0 \\
     1
 \end{bmatrix}
-\ thus, \Psi=
+\ thus, \ket{\Psi}=
 \begin{bmatrix}
     \alpha \\
     \beta \\
@@ -237,7 +237,7 @@ CNOT=
 \end{bmatrix}
 \]
 \[
-CNOT\Psi=
+CNOT\ket{\Psi}=
 \begin{bmatrix}
     1 & 0 & 0 & 0 \\
     0 & 1 & 0 & 0 \\
@@ -260,7 +260,7 @@ CNOT\Psi=
 \] \\
 In order to make the demonstration more concrete, the state can be represented with a $4\times2$ matrix representing state values of both qubits.
 \[
-CNOT\Psi=
+CNOT\ket{\Psi}=
 \begin{bmatrix}
     1 & 0 & 0 & 0 \\
     0 & 1 & 0 & 0 \\
@@ -283,6 +283,15 @@ CNOT\Psi=
 \] \\
 The following diagram illustrates the CNOT gate in the quantum circuit:
 $$\Qcircuit @C=2em @R=.7em {& \ctrl{1} & \targ & \qw \\ & \targ & \ctrl{-1} & \qw}$$
+
+\section{Unitary Transformation}
+As demonstrated in the quantum gates section, unitary transformations can be justified as matrix operations on vectors. This kind of quantum state manipulation can be represented as the following:
+$$\ket{\Psi}\mapsto M\cdot\ket{\Psi}$$
+In this case $\ket{\Psi}$ is a quantum state and $M$ is a matrix. $M$ is unitary if $M'\cdot M=I$ such that $I$ is the identity matrix. Unitary transformations are reversible and opposed to being information destructive.
+
+\section{Measurements}
+Contrary to the concept of unitary transformations, measurements are not reversible and therefore information destructive. However, this kind of operation is effective in retrieving classical information back from quantum information along with interfering or destroying the quantum state. \\\\
+For example, given the quantum state $\ket{\Psi}=\alpha\ket{0}+\beta\ket{1}$, the state $\ket{0}$ with probability $\alpha^2$ and the state $\ket{1}$ with probability $\beta^2$ will be used to measure the actual state $\ket{\Psi}$. The qubit will be determined to be in one of both states until a new transformation occurs. 
 
 \bibliography{refs} % this causes the references to be listed
 \bibliographystyle{apalike} % bibliography style
