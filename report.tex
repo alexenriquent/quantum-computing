@@ -17,6 +17,11 @@
 \usepackage{titlesec}
 \titleformat{\chapter}{\normalfont\huge\bf}{\thechapter.}{20pt}{\huge\bf}
 
+\input{Qcircuit}
+\usepackage{braket}
+\usepackage{physics}
+\usepackage{amsmath}
+
 %% End of preamble, the actual document starts here
 
 \begin{document}
@@ -35,7 +40,7 @@
 The theory of computation has been extensively developed during the last few decades. Computers have provided reliable solutions for a myriad of community's seemingly unsolvable problems. Notwithstanding, various complicated problems have been continuously introduced to society as it never stops growing and becomes more complex. Even though technology nowadays has been steady advancing to approach the demands of society, whereas such steady progress has its limitation since many of those problems are intricate to model or appear to require time-intensive solutions. This phenomenon implies to the necessity of a new computing revolution since classical computation no longer has an ability to reach the increased demand. \\\\
 According to Moore's law, the computational power of computers would dramatically increase approximately every two years \cite{moore}. The theory can be proven real since the size of transistors has rapidly become smaller to a few nanometres \cite{qc-info}. This results in a higher number of transistors mounted on an integrated circuit. The laws of classical physics do not function with objects with such small size. Thus, quantum computing becomes a next solution to deal with these complex problems. \\\\
 Quantum computing is the revolution. It is a relatively new field of research which has the potential to introduce the world of computing to a new stage where certain computationally intense problems can be solved with a shorter amount of processing time. One can consider quantum computing as the art of utilising all the possibilities that the laws of quantum physics contribute to solving computational problems while classical computers merely use a minuscule subset of these possibilities. However, quantum computers are not a replacement for conventional computers as quantum mechanics only improve the computing efficiency for certain types of computation. \\\\
-This research report delivers a brief glimpse into the world of quantum computers and the laws of quantum mechanics applied to this entirely new type of computer. It will also introduce the fundamental concepts of the field along with exploring quantum computing in practice using Language-Integrated Quantum Operations (LIQUi$\mid\rangle$). This report concludes with experience evaluation in the quantum computing research in relation to the content of the unit (Programming Paradigms).
+This research report delivers a brief glimpse into the world of quantum computers and the laws of quantum mechanics applied to this entirely new type of computer. It will also introduce the fundamental concepts of the field along with exploring quantum computing in practice using Language-Integrated Quantum Operations (LIQUi$\ket{}$). This report concludes with experience evaluation in the quantum computing research in relation to the content of the unit (Programming Paradigms).
 
 \chapter{Early History}
 In the early 1980s, physicist Richard Freyman recognised that it was not possible for phenomena associated with entangled particles (quantum phenomena) to be efficiently simulated on classical computers \cite{qc}. Freyman was the first who suggested that quantum-mechanical systems might have higher computational power than conventional computers. \\\\
@@ -50,8 +55,234 @@ In 1998, researchers at the University Innsbruck in Austria put the idea of quan
 \begingroup
 \renewcommand{\cleardoublepage}{}
 \renewcommand{\clearpage}{}
-\chapter{Making a bibliography}
+\chapter{Basic Concepts}
 \endgroup
+
+\section{Qubits}
+A bit is the most fundamental building block of the classical model of computer, which has a single logical value, either false or true or simply 0 or 1. In a quantum computer, the quantum bit or qubit also has two computational basis states; 0 and 1, represented by $\ket{0}$ and $\ket{1}$ respectively. However, it can be in a superposition of quantum mechanical two-state systems, meaning the qubit is both in state 0 and 1 simultaneously. A superposition of the qubit can be represented by $\alpha\ket{0}+\beta\ket{1}$ for some $\alpha$ and $\beta$ such that $|\alpha|^2+|\beta|^2=1$. \\\\
+In computer system, information is represented in binary form since it is stored in the registers. For example, the non-negative numbers can be represented in binary form as
+$$0,1,10,11,100,101,110,111...$$
+A number of bits can determine how many configurations that binary string can represent since $2^n=y$ where $n$ is a number of bits and $y$ is a number of different configurations. For example, a three-bit binary string can represent $2^3=8$ numbers including 0 to 7. On the other hand, in quantum computers, the non-negative numbers can be represented in binary form as
+$$\ket{0},\ket{1},\ket{1}\otimes\ket{0},\ket{1}\otimes\ket{1},\ket{1}\otimes\ket{0}\otimes\ket{0}...$$
+In this case, an integer can be written in the form of $\ket{x_{n-1}}\otimes\ket{x_{n-2}}\otimes\ket{x_{n-3}}\otimes...\otimes\ket{x_1}\otimes\ket{x_0}$ where $\ket{x}$ is a single qubit and $x\in\{0,1\}$. Therefore, a quantum register of size three must be able to represent positive integers from 0 to 7 as the following:
+$$\ket{0}\otimes\ket{0}\otimes\ket{0}\equiv\ket{000}\equiv\ket{0} \ ...\ \ket{1}\otimes\ket{1}\otimes\ket{1}\equiv\ket{111}\equiv\ket{7}$$
+However, each qubit can be in both states simultaneously. A superposition of a single qubit can be denoted by $1/\sqrt[]{2}(\ket{0}+\ket{1})$. Therefore, a superposition of a quantum register of size three will be
+$$\frac{1}{\sqrt[]{2}}(\ket{0}+\ket{1})\otimes\frac{1}{\sqrt[]{2}}(\ket{0}+\ket{1})\otimes\frac{1}{\sqrt[]{2}}(\ket{0}+\ket{1})$$
+This can be represented in binary and decimal forms without the constant respectively as
+$$\ket{000}+\ket{001}+\ket{010}+\ket{011}+\ket{100}+\ket{101}+\ket{110}+\ket{111}$$
+$$\equiv\ket{0}+\ket{1}+\ket{2}+\ket{3}+\ket{4}+\ket{5}+\ket{6}+\ket{7}$$
+$$\equiv\sum_{x=0}^{7}\ket{x}$$
+
+\section{Quantum Gates}
+
+In order to explain the concept of quantum gates, the basis states must be represented differently from the previous section. Since matrix transformations will be used to demonstrate the concept of each gate, each qubit state will be represented by any two orthogonal unit column vectors as follows: 
+\[
+0=
+\begin{bmatrix}
+    1 \\
+    0 
+\end{bmatrix}
+,1=
+\begin{bmatrix}
+    0 \\
+    1 
+\end{bmatrix}
+\]
+In this case, the name 0 and 1 are the representations of logical zero and logical one respectively. The qubit's actual state $\Psi$ or its superposition can be represented by
+\[
+\Psi=\alpha0+\beta1=
+\begin{bmatrix}
+    \alpha \\
+    \beta 
+\end{bmatrix}
+\]
+\subsection{Quantum Gates}
+Each quantum gate can be represented by a square matrix. It also needs to be unitary since being unitary will preserve the unit length of the state vector $\Psi$ after matrix multiplication and the new state must meet the normalisation criteria $|\alpha|^2+|\beta|^2=1$. Thus, given the $2\times2$ identity matrix $I$, the output state will remain in the same state. 
+\[
+I=
+\begin{bmatrix}
+    1 & 0 \\
+    0 & 1 
+\end{bmatrix}
+\] 
+\[
+I\Psi=
+\begin{bmatrix}
+    1 & 0 \\
+    0 & 1 
+\end{bmatrix}
+\begin{bmatrix}
+    \alpha \\
+    \beta 
+\end{bmatrix}
+=
+\begin{bmatrix}
+    \alpha \\
+    \beta 
+\end{bmatrix}
+=\Psi
+\] \\
+The matrix multiplication yields a new qubit state which is identical to the input state. This kind of quantum gate can be represented by a single wire as the following:
+$$\Qcircuit @C=5em @R=.7em { & \qw}$$
+
+\subsection{The NOT gate}
+The NOT gate, represented by the negation matrix, flips its input into the opposite value. This rule indicates that if the initial state of the input is 0, and result will be 1 and vice versa. Thus, given the negation matrix $X$, each state will be inverted into its opposite value after the multiplication process.
+\[
+X=
+\begin{bmatrix}
+    0 & 1 \\
+    1 & 0 
+\end{bmatrix}
+\] 
+\[
+X\Psi=
+\begin{bmatrix}
+    0 & 1 \\
+    1 & 0 
+\end{bmatrix}
+\begin{bmatrix}
+    \alpha \\
+    \beta 
+\end{bmatrix}
+=
+\begin{bmatrix}
+    \beta \\
+    \alpha 
+\end{bmatrix}
+\] \\
+The following diagram represents the NOT gate in the quantum circuit:
+$$\Qcircuit @C=3em @R=.7em {& \gate{X} & \qw}$$ \\
+
+\subsection{The Hadamard Gate}
+This quantum gate is very important since the actual state of each qubit can be in a superposition state. Given the Hadamard matrix $H$, if the input is 0, its output will be the normalised sum of both basis states (0 and 1). In contrast, if the input is 1, the output will be the normalised difference of both basis states.
+\[
+H=\frac{1}{\sqrt[]{2}}
+\begin{bmatrix}
+    1 & 1 \\
+    1 & -1 
+\end{bmatrix}
+\] 
+\[
+H\Psi=\frac{1}{\sqrt[]{2}}
+\begin{bmatrix}
+    1 & 1 \\
+    1 & -1 
+\end{bmatrix}
+\begin{bmatrix}
+    \beta \\
+    \alpha 
+\end{bmatrix}
+=\frac{1}{\sqrt[]{2}}
+\begin{bmatrix}
+    \alpha+\beta \\
+    \alpha-\beta 
+\end{bmatrix}
+\] \\
+The following diagram represents the Hadamard gate in the quantum circuit:
+$$\Qcircuit @C=3em @R=.7em {& \gate{H} & \qw}$$
+
+\subsection{Entanglement}
+Each qubit has its own quantum state. However, two or more qubits can act on one another which leads to the formation of an entangled system. When qubit states are entangled, it needs to be treated as the entire system or overall state, instead of individual quantum state. For example, given a two-bit system, it can be any integer between the range 0 and 3 inclusive as the following:
+$$\ket{00}+\ket{01}+\ket{10}+\ket{11}$$
+Thus, its normalised superposition can be expressed as
+$$\Psi=\alpha00+\beta01+\gamma10+\delta11$$
+This rule also needs to meet the condition $|\alpha|^2+|\beta|^2+|\gamma|^2+|\delta|^2=1$. Thus, given an arbitrary set of orthogonal column vectors, each vector represents a possible quantum state, it should yield a new column vector with multi-qubit states.
+\[
+00=
+\begin{bmatrix}
+    1 \\
+    0 \\
+    0 \\
+    0
+\end{bmatrix}
+,01=
+\begin{bmatrix}
+    0 \\
+    1 \\
+    0 \\
+    0
+\end{bmatrix}
+,10=
+\begin{bmatrix}
+    0 \\
+    0 \\
+    1 \\
+    0
+\end{bmatrix}
+,11=
+\begin{bmatrix}
+    0 \\
+    0 \\
+    0 \\
+    1
+\end{bmatrix}
+\ thus, \Psi=
+\begin{bmatrix}
+    \alpha \\
+    \beta \\
+    \gamma \\
+    \delta
+\end{bmatrix}
+\]
+
+\subsection{The Controlled-NOT Gate}
+Unlike single-qubit gates such as the Hadamard gate or the NOT gate, the controlled-NOT or CNOT gate operates on two qubits by flipping the value of the second bit if the first bit is 1, but the value of the second bit remains unchanged if the first bit is 0. The following matrices illustrate how the CNOT gate operate on two qubits.
+\[
+CNOT=
+\begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 1 \\
+    0 & 0 & 1 & 0
+\end{bmatrix}
+\]
+\[
+CNOT\Psi=
+\begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 1 \\
+    0 & 0 & 1 & 0
+\end{bmatrix}
+\begin{bmatrix}
+    \alpha \\
+    \beta \\
+    \gamma \\
+    \delta
+\end{bmatrix}
+=
+\begin{bmatrix}
+    \alpha \\
+    \beta \\
+    \delta \\
+    \gamma
+\end{bmatrix}
+\] \\
+In order to make the demonstration more concrete, the state can be represented with a $4\times2$ matrix representing state values of both qubits.
+\[
+CNOT\Psi=
+\begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 1 \\
+    0 & 0 & 1 & 0
+\end{bmatrix}
+\begin{bmatrix}
+    0 & 0 \\
+    0 & 1 \\
+    1 & 0 \\
+    1 & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+    0 & 0 \\
+    0 & 1 \\
+    1 & 1 \\
+    1 & 0
+\end{bmatrix}
+\] \\
+The following diagram illustrates the CNOT gate in the quantum circuit:
+$$\Qcircuit @C=2em @R=.7em {& \ctrl{1} & \targ & \qw \\ & \targ & \ctrl{-1} & \qw}$$
 
 \bibliography{refs} % this causes the references to be listed
 \bibliographystyle{apalike} % bibliography style
