@@ -21,6 +21,7 @@
 \usepackage{braket}
 \usepackage{physics}
 \usepackage{amsmath}
+\usepackage{apacite}
 
 %% End of preamble, the actual document starts here
 
@@ -293,10 +294,43 @@ In this case $\ket{\Psi}$ is a quantum state and $M$ is a matrix. $M$ is unitary
 Contrary to the concept of unitary transformations, measurements are not reversible and therefore information destructive. However, this kind of operation is effective in retrieving classical information back from quantum information along with interfering or destroying the quantum state. \\\\
 For example, given the quantum state $\ket{\Psi}=\alpha\ket{0}+\beta\ket{1}$, the state $\ket{0}$ with probability $\alpha^2$ and the state $\ket{1}$ with probability $\beta^2$ will be used to measure the actual state $\ket{\Psi}$. The qubit will be determined to be in one of both states until a new transformation occurs. 
 
+\chapter{Applications}
+Since quantum computing is relatively a new area of study, many of its real-world applications are not yet to be seen. Nevertheless, this young field has been being explored by researchers who acknowledge its possibility in advancing the area of high-performance computing. This section delineates potential applications of quantum computing in cryptography along with its classical quantum algorithms, including Shor and Grover's algorithms.
+
+\section{Cryptography}
+Public key cryptography has a long history in information security since it is an effectively practical cryptosystem used for data transmission. This approach primarily relies on the complexity of how to crack the communication. This cryptosystem is still considered unconditionally secure since there does not exist a mathematical theorem that prevents eavesdroppers from creating sophisticated revolutionary algorithms to interfere the communication. \\\\
+Quantum cryptography provides an elegant solution to the dilemma using Quantum Key Distribution (QKD) to exchange a symmetric key over a quantum channel. The security of data transmission can be ensured since quantum error correction codes allow all parties of the communication channel to be able to detect the presence of potential eavesdroppers.
+
+\section{Algorithms}
+It is wildly acknowledged that potential quantum-mechanic applications are primarily based on quantum algorithms, computational algorithms run on a quantum computer with highly efficiency improvement over any classical algorithm. This section intends to deliver an overview of quantum algorithmics, focusing on Shor and Grover's algorithms.
+
+\subsection{Shor's Algorithm}
+On a classical computer, factoring a large integer is considered a highly time-intensive task. However, Shor indicates that factoring a large integer in polynomial relies on the capacity to find the order of that integer $mod$ $N$. Shor's algorithm follows the processes outlined below:
+\begin{enumerate}
+\item Select a random $x$, such that $x < N$
+\item Compute $f = gcd(x,N)$. This may be done using the Euclidean algorithm. If $f\neq1$, then return $f$ since it is a prime factor.
+\item Find the least $r$ such that $x^r\equiv1$ $mod$ $N$, where $r$ is a repetition period.
+\item If either $gcd(x^{r/2}-1,N)\neq1$ or $gcd(x^{r/2}+1,N)\neq1$, then return it as a prime factor.
+\item Otherwise, repeat the process from the first step.
+\end{enumerate}
+This algorithm consists of two parts, including the classical and quantum parts. According to the algorithm, computing $x^r$ in the third step is necessary. However, this cannot be implemented classically. In this case, Shor utilised the quantum Fourier transform which relies on quantum parallelism to solve the problem.
+
+\subsection{Grover's Algorithm}
+Grover's algorithm is one of the most well-known quantum algorithms. It is extremely beneficial to any large technology-based organisation which has its data stored in a database where searching is required. This process of searching is incredibly time-efficient compared with any other classical algorithms. For a search over a set of unordered data, the best classical algorithm requires $O(N)$ time, while Grover's algorithm performs a search in only $O(\sqrt[]{N})$ operations to find the unique element that satisfies a particular condition, which is a quadratic speedup. Grover's algorithm is as follows:
+\begin{enumerate}
+\item Prepare a quantum register of $n$ qubits, where $n$ is a number of qubits necessary to represent the search space of size $2^n=N$. All qubits need to be initialised to the state $\ket{0}$.
+\item Compute $P(x_i)$ where the superposition is calculated.
+$$\frac{1}{\sqrt[]{2^n}}\sum_{x=0}^{n-1}\ket{x,P(x)}$$
+\item Invert amplitude of $a_j$ to $-a_j$ such that $P(x_j)=1$. Then apply inversion to increase amplitude of $x_j$ with $P(x_j)=1$.
+\item Repeat steps 2 to 3 $\frac{\pi}{4}\sqrt[]{2^n}$ times.
+\item Measure the result.
+\end{enumerate}
+In order to achieve such performance, Grover's algorithm relies on the superposition of qubit states. Additionally, it also utilises the amplitude amplification algorithms which are unique to quantum computing to solve the problem.
+
 \bibliography{refs} % this causes the references to be listed
-\bibliographystyle{apalike} % bibliography style
+\bibliographystyle{apacite} % bibliography style
 
 %% Appendices start here
-\appendix
-\include{appendix1}
+%\appendix
+%\include{appendix1}
 \end{document}
