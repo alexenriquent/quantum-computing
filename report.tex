@@ -467,7 +467,7 @@ let Liquid(n:int) =
         stats.[value] <- stats.[value] + 1
     show "Measured: 0 = %d 1 = %d" stats.[0] stats.[1]
 \end{verbatim}
-The Entangle function is the extended version of the LIQUID function (the function with the \texttt{[<LQD>]} attribute). This function defines two additional quantum circuits. The first circuit is used to compile the quantum function with the defined ket as an input. The second circuit optimises the program efficiency by combining all the gates on the first circuits into a single gate.
+The \texttt{Liquid} function defines two additional quantum circuits. The first circuit is used to compile the quantum function with the defined ket as an input. The second circuit optimises the program efficiency by combining all the gates on the first circuits into a single gate.
 \begin{verbatim}
 0:0000.0/=============== Logging to: Liquid.log opened ================
 0:0000.1/Circuit 1:
@@ -481,8 +481,8 @@ The Entangle function is the extended version of the LIQUID function (the functi
 0:0000.1/Measured: 0 = 484 1 = 516
 0:0000.1/=============== Logging to: Liquid.log closed ================
 \end{verbatim}
-The Dump function creates a log file containing the sequence of the applications of gates (See Appendix A.2 for the sample log file). \\\\
-The RenderHT function produce a diagram of the current quantum circuit. In this case, it will create \texttt{htm} and \texttt{tex} files illustrating two diagrams, including the initial state of the quantum circuit and its state after being optimised.
+The \texttt{Dump} function creates a log file containing the sequence of the applications of gates (See Appendix A.2 for the sample log file). \\\\
+The \texttt{RenderHT} function produce a diagram of the current quantum circuit. In this case, it will create \texttt{htm} and \texttt{tex} files illustrating two diagrams, including the initial state of the quantum circuit and its state after being optimised.
 \begin{figure}[ht]
 \centering
 \includegraphics[width=15cm]{circuit1}
