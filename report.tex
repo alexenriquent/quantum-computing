@@ -23,6 +23,9 @@
 \usepackage{amsmath}
 \usepackage{apacite}
 
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
 %% End of preamble, the actual document starts here
 
 \begin{document}
@@ -31,7 +34,7 @@
 
 %% Generate contents etc
 \tableofcontents
-%\listoffigures
+\listoffigures
 %\listoftables
 
 %% These include the actual text
@@ -41,7 +44,7 @@
 The theory of computation has been extensively developed during the last few decades. Computers have provided reliable solutions for a myriad of community's seemingly unsolvable problems. Notwithstanding, various complicated problems have been continuously introduced to society as it never stops growing and becomes more complex. Even though technology nowadays has been steady advancing to approach the demands of society, whereas such steady progress has its limitation since many of those problems are intricate to model or appear to require time-intensive solutions. This phenomenon implies to the necessity of a new computing revolution since classical computation no longer has an ability to reach the increased demand. \\\\
 According to Moore's law, the computational power of computers would dramatically increase approximately every two years \cite{moore}. The theory can be proven real since the size of transistors has rapidly become smaller to a few nanometres \cite{qc-info}. This results in a higher number of transistors mounted on an integrated circuit. The laws of classical physics do not function with objects with such small size. Thus, quantum computing becomes a next solution to deal with these complex problems. \\\\
 Quantum computing is the revolution. Although it is a relatively new field of research, this technology has the potential to introduce the world of computing to a new stage where certain computationally intense problems can be solved with a shorter amount of processing time. One can consider quantum computing as the art of utilising all the possibilities that the laws of quantum physics contribute to solving computational problems while classical computers merely use a minuscule subset of these possibilities. However, quantum computers are not a replacement for conventional computers as quantum mechanics only improve the computing efficiency for certain types of computation. \\\\
-This research report delivers a brief glimpse into the world of quantum computers and the laws of quantum mechanics applied to this entirely new type of computer. It will also introduce the fundamental concepts of the field along with exploring quantum computing in practice using Language-Integrated Quantum Operations (LIQUi$\ket{}$). This report concludes with experience evaluation in the quantum computing research in relation to the content of the unit (Programming Paradigms).
+This research report delivers a brief glimpse into the world of quantum computers and the laws of quantum mechanics applied to this entirely new type of computer. It will also introduce the fundamental concepts of the field along with exploring quantum computing in practice using Language-Integrated Quantum Operations (LIQ$Ui\ket{}$). This report concludes with experience evaluation in the quantum computing research in relation to the content of the unit (Programming Paradigms).
 
 \chapter{Early History}
 In the early 1980s, physicist Richard Freyman recognised that it was not possible for phenomena associated with entangled particles (quantum phenomena) to be efficiently simulated on classical computers \cite{qc}. Freyman was the first who suggested that quantum-mechanical systems might have higher computational power than conventional computers. \\\\
@@ -126,7 +129,7 @@ I\ket{\Psi}=
 The matrix multiplication yields a new qubit state which is identical to the input state. This kind of quantum gate can be represented by a single wire as the following:
 $$\Qcircuit @C=5em @R=.7em { & \qw}$$
 
-\subsection{The NOT gate}
+\subsection{The NOT Gate}
 The NOT gate, represented by the negation matrix, flips its input into the opposite value. This rule indicates that if the initial state of the input is 0, and result will be 1 and vice versa. Thus, given the negation matrix $X$, each state will be inverted into its opposite value after the multiplication process.
 \[
 X=
@@ -152,7 +155,11 @@ X\ket{\Psi}=
 \end{bmatrix}
 \] \\
 The following diagram represents the NOT gate in the quantum circuit:
-$$\Qcircuit @C=3em @R=.7em {& \gate{X} & \qw}$$ \\
+\begin{figure}[htbp]
+  \centering
+  $$\Qcircuit @C=3em @R=.7em {& \gate{X} & \qw}$$
+  \caption{The NOT gate}
+\end{figure}
 
 \subsection{The Hadamard Gate}
 This quantum gate is very important since the actual state of each qubit can be in a superposition state. Given the Hadamard matrix $H$, if the input is 0, its output will be the normalised sum of both basis states (0 and 1). In contrast, if the input is 1, the output will be the normalised difference of both basis states.
@@ -180,7 +187,11 @@ H\Psi=\frac{1}{\sqrt[]{2}}
 \end{bmatrix}
 \] \\
 The following diagram represents the Hadamard gate in the quantum circuit:
-$$\Qcircuit @C=3em @R=.7em {& \gate{H} & \qw}$$
+\begin{figure}[htbp]
+  \centering
+  $$\Qcircuit @C=3em @R=.7em {& \gate{H} & \qw}$$
+  \caption{The Hadamard gate}
+\end{figure}
 
 \subsection{Entanglement}
 Each qubit has its own quantum state. However, two or more qubits can act on one another which leads to the formation of an entangled system. When qubit states are entangled, it needs to be treated as the entire system or overall state, instead of individual quantum state. For example, given a two-bit system, it can be any integer between the range 0 and 3 inclusive as the following:
@@ -283,7 +294,11 @@ CNOT\ket{\Psi}=
 \end{bmatrix}
 \] \\
 The following diagram illustrates the CNOT gate in the quantum circuit:
-$$\Qcircuit @C=2em @R=.7em {& \ctrl{1} & \targ & \qw \\ & \targ & \ctrl{-1} & \qw}$$
+\begin{figure}[htbp]
+  \centering
+  $$\Qcircuit @C=2em @R=.7em {& \ctrl{1} & \targ & \qw \\ & \targ & \ctrl{-1} & \qw}$$
+  \caption{The CNOT gate}
+\end{figure}
 
 \section{Unitary Transformation}
 As demonstrated in the quantum gates section, unitary transformations can be justified as matrix operations on vectors. This kind of quantum state manipulation can be represented as the following:
@@ -294,7 +309,12 @@ In this case $\ket{\Psi}$ is a quantum state and $M$ is a matrix. $M$ is unitary
 Contrary to the concept of unitary transformations, measurements are not reversible and therefore information destructive. However, this kind of operation is effective in retrieving classical information back from quantum information along with interfering or destroying the quantum state. \\\\
 For example, given the quantum state $\ket{\Psi}=\alpha\ket{0}+\beta\ket{1}$, the state $\ket{0}$ with probability $\alpha^2$ and the state $\ket{1}$ with probability $\beta^2$ will be used to measure the actual state $\ket{\Psi}$. The qubit will be determined to be in one of both states until a new transformation occurs. 
 
+\begingroup
+\renewcommand{\cleardoublepage}{}
+\renewcommand{\clearpage}{}
 \chapter{Applications}
+\endgroup
+
 Since quantum computing is relatively a new area of study, many of its real-world applications are not yet to be seen. Nevertheless, this young field has been being explored by researchers who acknowledge its possibility in advancing the area of high-performance computing. This section delineates potential applications of quantum computing in cryptography along with its classical quantum algorithms, including Shor and Grover's algorithms.
 
 \section{Cryptography}
@@ -327,10 +347,448 @@ $$\frac{1}{\sqrt[]{2^n}}\sum_{x=0}^{n-1}\ket{x,P(x)}$$
 \end{enumerate}
 In order to achieve such performance, Grover's algorithm relies on the superposition of qubit states. Additionally, it also utilises the amplitude amplification algorithms which are unique to quantum computing to solve the problem.
 
+\chapter{LIQ$Ui\ket{}$}
+
+\section{Introduction to LIQ$Ui\ket{}$}
+Language-Integrated Quantum Operations (LIQ$Ui\ket{}$) is a modular software platform for quantum computing developed by the Quantum Architectures and Computation Group (QuArC). It includes an embedded and domain-specific language designed essentially for quantum algorithms with F\# as the primary programming language. The software also allows the simulation of quantum algorithms and circuits along with supporting the extraction of a circuit data structure which is useful for circuit optimisation, gate replacement, quantum error correction, rendering or export. \\\\
+LIQ$Ui\ket{}$ allows the circuit simulation up to 30 qubits on a classical computer with 32 GB of RAM. According to the Microsoft Research's statistics, the largest integer factored on LIQ$Ui\ket{}$, based on Beauregard’s circuit for Shor's algorithm, is a 13-bit integer. The process required 27 qubits, approximately 0.5 million gates and 5 days runtime to produce the prime factoring result.
+
+\section{LIQ$Ui\ket{}$ Experiment}
+This experiment explores functionalities of LIQ$Ui\ket{}$ with Visual Studio as the main Integrated Development Environment (IDE) since it provides a full compilation environment linked to the LIQ$Ui\ket{}$ library (dll), IntelliSense editing and a full debugging environment.
+
+\subsection{Template}
+The easiest approach to create a new executable file for LIQ$Ui\ket{}$ is to use the Visual Studio solution template provided by Microsoft Research. Any function with the attribute \texttt{[<LQD>]} can be called from terminal with \texttt{liquid <function>(<arg>,...)}.
+\begin{verbatim}
+[<LQD>]
+let __UserSample() =
+    show "This module is a good place to put compiled user code"
+\end{verbatim}
+This simple F\# code only display the message on the command prompt using the command \texttt{liquid \_\_UserSample()}. The following message should be displayed after compiling and running the code: \\
+\begin{verbatim}
+0:0000.0/=============== Logging to: Liquid.log opened ================
+0:0000.0/This module is a good place to put compiled user code
+0:0000.0/=============== Logging to: Liquid.log closed ================
+\end{verbatim}
+
+\subsection{Qubit Measurement}
+This program simply measures the state of a qubit for a thousand iterations. The following code creates an array of size two to store the results of both states, repetitively measures it and prints the final output.
+\begin{verbatim}
+let quantumFunction (qubits:Qubits) =
+    M qubits // M: Built-in measurement function
+
+[<LQD>]
+let Liquid() =
+    let stats = Array.create 2 0
+    let ket = Ket(1)
+    for i in 0..999 do
+        let qubits = ket.Reset(1) 
+        quantumFunction qubits
+        let value = qubits.Head.Bit.v
+        stats.[value] <- stats.[value] + 1
+    show "Measured: 0 = %d 1 = %d" stats.[0] stats.[1]
+\end{verbatim}
+The result should be obvious since the initial state of the qubit is 0 and there is no other quantum gate involved in the circuit except for its own quantum gate (identity).
+\begin{verbatim}
+0:0000.0/=============== Logging to: Liquid.log opened ================
+0:0000.1/Measured: 0 = 1000 1 = 0
+0:0000.1/=============== Logging to: Liquid.log closed ================
+\end{verbatim}
+
+\subsection{The Hadamard Gate}
+This program is the first piece of actual quantum code. It uses the Hadamard gate to transform a given input state into its superposition. The code should remain the same as the previous section but the quantum function should be modified as follows:
+\begin{verbatim}
+let quantumFunction (qubits:Qubits) =
+    H qubits // H: Built-in Hadamard gate function
+    M qubits // M: Built-in measurement function
+\end{verbatim}
+The result is different with 50\% probability of the state 0 or 1.
+\begin{verbatim}
+0:0000.0/=============== Logging to: Liquid.log opened ================
+0:0000.1/Measured: 0 = 527 1 = 473
+0:0000.1/=============== Logging to: Liquid.log closed ================
+\end{verbatim}
+
+\subsection{User-defined Gate}
+This program uses the user-defined gate, namely $rotationX$. This gate can be used to rotate the qubit around any arbitrary angle in the $X$ axis.
+\begin{verbatim}
+let rotationX (theta:float) (qs:Qubits) =
+    let gate (theta:float) =
+        let name = "Rx" + theta.ToString("F2")
+        new Gate(
+            Name = name,
+            Help = sprintf "Rotate in X by: %f" theta,
+            Mat = (
+                let phi = theta / 2.0
+                let c = Math.Cos phi
+                let s = Math.Sin phi
+                CSMat(2,[0,0,c,0.;0,1,-s,0.;1,0,s,0.;1,1,c,0.])),
+            Draw = "\\gate{" + name + "}"
+            )
+    (gate theta).Run qs
+\end{verbatim}
+The code should remain the same as the previous section but the quantum function should be modified as follows:
+\begin{verbatim}
+let quantumFunction (qubits:Qubits) =
+    rotationX (Math.PI/2.0) qubits
+    M qubits
+\end{verbatim}
+The result should be similar with the result from the circuit with the Hadamard gate.
+\begin{verbatim}
+0:0000.0/=============== Logging to: Liquid.log opened ================
+0:0000.1/Measured: 0 = 501 1 = 499
+0:0000.1/=============== Logging to: Liquid.log closed ================
+\end{verbatim}
+
+\subsection{Entanglement}
+All the previous programs only perform the quantum function on a single qubit. However, two or more qubits are required in this case in order to simulate the quantum entanglement. The program will take $n$ qubits as its input, transform each qubit to its superposition, then perform entanglement with the CNOT gate and measure the output state (See Appendix A.1 for the source code).
+\begin{verbatim}
+let quantumFunction (qubits:Qubits) =
+    rotationX (Math.PI/2.0) qubits
+    for qubit in qubits.Tail do 
+        CNOT [qubits.Head; qubit]
+    M >< qubits // Measures all the qubits
+
+[<LQD>]
+let Liquid(n:int) =
+    let stats = Array.create 2 0
+    let ket = Ket(n)
+    let circuit = Circuit.Compile quantumFunction ket.Qubits
+    show "Circuit 1:"
+    circuit.Dump()
+    circuit.RenderHT("Circuit1")
+    let circuit = circuit.GrowGates(ket)
+    show "Circuit 2:"
+    circuit.Dump()
+    circuit.RenderHT("Circuit2")
+    for i in 0..999 do
+        let qubits = ket.Reset(n) 
+        circuit.Run qubits
+        let value = qubits.Head.Bit.v
+        stats.[value] <- stats.[value] + 1
+    show "Measured: 0 = %d 1 = %d" stats.[0] stats.[1]
+\end{verbatim}
+The Entangle function is the extended version of the LIQUID function (the function with the \texttt{[<LQD>]} attribute). This function defines two additional quantum circuits. The first circuit is used to compile the quantum function with the defined ket as an input. The second circuit optimises the program efficiency by combining all the gates on the first circuits into a single gate.
+\begin{verbatim}
+0:0000.0/=============== Logging to: Liquid.log opened ================
+0:0000.1/Circuit 1:
+0:0000.1/Writing: Circuit1.htm (split=100.00% scale=100.00%)
+0:0000.1/Writing: Circuit1.tex (split=100.00% scale=100.00%)
+0:0000.1/     Doing columns:  0 - 22
+0:0000.1/Circuit 2:
+0:0000.1/Writing: Circuit2.htm (split=100.00% scale=100.00%)
+0:0000.1/Writing: Circuit2.tex (split=100.00% scale=100.00%)
+0:0000.1/     Doing columns:  0 - 14
+0:0000.1/Measured: 0 = 484 1 = 516
+0:0000.1/=============== Logging to: Liquid.log closed ================
+\end{verbatim}
+The Dump function creates a log file containing the sequence of the applications of gates (See Appendix A.2 for the sample log file). \\\\
+The RenderHT function produce a diagram of the current quantum circuit. In this case, it will create \texttt{htm} and \texttt{tex} files illustrating two diagrams, including the initial state of the quantum circuit and its state after being optimised.
+\begin{figure}[ht]
+\centering
+\includegraphics[width=15cm]{circuit1}
+\caption{The initial state of the circuit}
+\end{figure}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=10cm]{circuit2}
+\caption{The circuit after being optimised}
+\end{figure}
+
+\newpage
+\section{Built-in Samples}
+LIQ$Ui\ket{}$ contains a number of built-in samples for some of the specific quantum algorithms, including Shor’s algorithm, quantum teleportation, quantum error correction, quantum linear algebra, quantum associated memory and the simulation of the ground state energy of a molecule. These executable samples gives users a glimpse of what LIQ$Ui\ket{}$ can do and application areas that it has been applied to. This section focuses on three built-in examples which are relevant to the concepts and applications explained in this report, including entanglement, Shor’s algorithm and quantum associative memory (utilising Grover’s algorithm).
+
+\subsection{Entanglement}
+This entanglement function produces detailed statistics the duration the simulator takes to perform various operations. It can be called with liquid \texttt{\_\_Entangle1(n)}, where $n$ is a number of qubits to be entangled (typically 10 to 22). The sample result is as the following:
+\begin{verbatim}
+0:0000.0/=============== Logging to: Liquid.log opened ================
+0:0000.0/ Secs/Op  S/Qubit  Mem(GB) Operation
+0:0000.0/ -------  -------  ------- ---------
+0:0000.0/   0.035    0.035    0.019 Created single state vector
+0:0000.0/   0.039    0.039    0.019 Did Hadamard
+0:0000.0/   0.004    0.004    0.019   Did CNOT:  1
+0:0000.0/   0.009    0.005    0.019   Did CNOT:  2
+0:0000.0/   0.019    0.006    0.020   Did CNOT:  3
+0:0000.0/   0.026    0.007    0.020   Did CNOT:  4
+0:0000.0/   0.038    0.008    0.020   Did CNOT:  5
+0:0000.0/   0.047    0.008    0.020   Did CNOT:  6
+0:0000.0/   0.054    0.008    0.020   Did CNOT:  7
+0:0000.0/   0.061    0.008    0.020   Did CNOT:  8
+0:0000.0/   0.068    0.008    0.020   Did CNOT:  9
+0:0000.0/   0.013    0.001    0.020 Did Measure
+0:0000.0/=============== Logging to: Liquid.log closed ================
+\end{verbatim}
+Apart from above example, LIQ$Ui\ket{}$ also provides another two functions which perform quantum entanglement on qubits, namely \texttt{\_\_Entangle2} and \texttt{\_\_Entangles}. The \texttt{\_\_Entangle2} function operates in the same way with \texttt{\_\_Enytangle1}. However, it also produces diagrams illustrating the circuits in the form of \texttt{htm} and \texttt{tex} files. The \texttt{\_\_Entangles} function runs 100 entanglement tests on 16 qubits. At the end of the process, half of the qubits should be in state 1 and another half should be in the opposite state.
+
+\subsection{Shor's Algorithm}
+Shor's polynomial-time prime factorisation algorithm is one of the sophisticated built-in tests among other samples. The command liquid \texttt{\_\_Shor(n,true)} can be used to run the algorithm. The command takes two parameters. The first is the integer to be factored and the second is the option whether to optimise (by combining) the quantum circuit. The following is the result of prime factorisation using Shor's algorithm with 21 as an input:
+\begin{verbatim}
+0:0000.0/=============== Logging to: Liquid.log opened ================
+0:0000.0/======== Doing Shor Round =========
+0:0000.0/      21 = N = Number to factor
+0:0000.0/       2 = a = coPrime of N
+0:0000.0/       5 = n = number of bits for N
+0:0000.0/      32 = 2^n
+0:0000.0/      13 = total qubits
+0:0000.0/      22 = starting memory (MB)
+0:0000.0/  96.00% = prob of random result (983/1024)
+0:0000.0/  43.07% = prob of Shor (worst case)
+0:0000.0/         - Compiling circuit
+0:0000.0/0.001330 = mins for compile
+0:0000.0/   13890 = cnt of gates
+0:0000.0/    3873 = cache hits
+0:0000.0/     121 = cache misses
+0:0000.0/      22 = compiled memory (MB)
+0:0000.0/         - Wrapping circuit pieces
+0:0000.1/            8 = wires have possibles: 66 (prv= 0GB did= 0 big= 0)
+0:0000.1/            9 = wires have possibles: 57 (prv= 0GB did= 9 big= 4)
+0:0000.1/           10 = wires have possibles: 52 (prv= 0GB did= 14 big= 39)
+0:0000.1/           11 = wires have possibles: 51 (prv= 0GB did= 15 big= 81)
+0:0000.2/           12 = wires have possibles: 48 (prv= 0GB did= 18 big= 124)
+0:0000.2/           13 = wires have possibles: 47 (prv= 0GB did= 19 big= 166)
+0:0000.2/      14 = Ran out of wires
+0:0000.2/           MM: g:    19 b:   212  12=1 11=3 10=1 9=5 8=9
+0:0000.2/0.140439 = mins for growing gates
+0:0000.2/     470 = cnt of gates
+0:0000.2/      52 = grown memory (MB)
+0:0000.2/        Bit:   9 [MB:   49 m=1]
+0:0000.3/        Bit:   8 [MB:   50 m=0]
+0:0000.4/        Bit:   7 [MB:   49 m=1]
+0:0000.6/        Bit:   6 [MB:   50 m=0]
+0:0000.6/... compiling MB=      47 cache(15806,126) GC:8519
+0:0000.8/        Bit:   5 [MB:   52 m=1]
+0:0001.1/        Bit:   4 [MB:   52 m=0]
+0:0001.2/        Bit:   3 [MB:   52 m=1]
+0:0001.2/... compiling MB=      49 cache(27741,126) GC:6400
+0:0001.4/        Bit:   2 [MB:   51 m=0]
+0:0001.6/        Bit:   1 [MB:   53 m=1]
+0:0001.8/        Bit:   0 [MB:   55 m=0]
+0:0001.8/0.046182 = mins for running
+0:0001.8/ 107.464 = Total Elapsed time (seconds)
+0:0001.8/      13 = Max Entangled
+0:0001.8/       0 = Gates Permuted
+0:0001.8/     371 = State Permuted
+0:0001.8/     128 = None  Permuted
+0:0001.8/     341 = m = quantum result
+0:0001.8/0.333008 = c = 341/1024 =~ 1/3
+0:0001.8/        Odd denominator, expanding
+0:0001.8/       3 = 6/2 = exponent
+0:0001.8/       9 = 2^3 + 1 mod 21
+0:0001.8/       7 = 2^3 - 1 mod 21
+0:0001.8/       7 = factor = max(3,7)
+0:0001.8/CSV N a m den f1 f2 good,21,2,341,6,7,3,1
+0:0001.8/GOT:   21=   7x   3 co=    2 n,q=21,13 mins=1.79 SUCCESS!!
+0:0001.8/=============== Logging to: Liquid.log closed ================
+\end{verbatim}
+According to the result, the quantum circuit had 13,890 gates that were reduced to 470 grown gates. The execution time is approximately 107 seconds on a Windows virtual machine with only 4 GB of RAM. However, the algorithm run successfully with the result $21 = 7\times3$.
+
+\subsection{Quantum Associative Memory}
+This built-in sample is the quantum associative memory algorithm developed by Dan Ventura and Tony Martinez. The algorithm applies the theory of quantum physics in creating a quantum associative memory with an exponentially expanded capacity in the number of neurons. The first set of output is a number of key\/value pairs:
+\begin{verbatim}
+0:0000.0/Writing: QuAM1.htm (split=10.00% scale=70.00%)
+0:0000.3/======= DUMPSTATE: Loaded patterns
+0:0000.3/0x0a:  6.3% (0x001400)
+0:0000.3/0x1a:  6.3% (0x003400)
+0:0000.3/0x24:  6.3% (0x004800)
+0:0000.3/0x3d:  6.3% (0x007a00)
+0:0000.3/0x4b:  6.3% (0x009600)
+0:0000.3/0x5e:  6.3% (0x00bc00)
+0:0000.3/0x64:  6.3% (0x00c800)
+0:0000.3/0x75:  6.3% (0x00ea00)
+0:0000.3/0x8c:  6.3% (0x011800)
+0:0000.3/0x9d:  6.3% (0x013a00)
+0:0000.3/0xa6:  6.3% (0x014c00)
+0:0000.3/0xb9:  6.3% (0x017200)
+0:0000.3/0xcf:  6.3% (0x019e00)
+0:0000.3/0xdd:  6.3% (0x01ba00)
+0:0000.3/0xeb:  6.3% (0x01d600)
+0:0000.3/0xf9:  6.3% (0x01f200)
+\end{verbatim}
+It is obvious that the circuit stored all the elements with equal probability. The next set of result demonstrates how the system used Grover's search algorithm to search for the element with key 6:
+\begin{verbatim}
+0:0000.3/Writing: QuAM2.htm (split=33.33% scale=70.00%)
+0:0000.5/    Grover[ 0]: 0x64:  7.7% (0x00c800)
+0:0000.5/    Grover[ 1]: 0x64: 12.4% (0x00c800)
+0:0000.5/    Grover[ 2]: 0x64: 16.9% (0x00c800)
+0:0000.5/    Grover[ 3]: 0x64: 19.2% (0x00c800)
+0:0000.5/    Grover[ 4]: 0x64: 18.2% (0x00c800)
+0:0000.5/    Grover[ 5]: 0x64: 14.5% (0x00c800)
+0:0000.5/    Grover[ 6]: 0x64:  9.6% (0x00c800)
+0:0000.5/    Grover[ 7]: 0x64:  5.5% (0x00c800)
+0:0000.5/    Grover[ 8]: 0x64:  2.9% (0x00c800)
+0:0000.5/    Grover[ 9]: 0x1a:  3.7% (0x003400)
+0:0000.5/    Grover[10]: 0x1a:  3.8% (0x003400)
+0:0000.5/    Grover[11]: 0x64:  3.2% (0x00c800)
+0:0000.5/    Grover[12]: 0x64:  6.0% (0x00c800)
+0:0000.5/    Grover[13]: 0x64: 10.3% (0x00c800)
+0:0000.5/    Grover[14]: 0x64: 15.1% (0x00c800)
+0:0000.5/    Grover[15]: 0x64: 18.6% (0x00c800)
+0:0000.5/    Grover[16]: 0x64: 19.1% (0x00c800)
+
+0:0000.5/======= DUMPSTATE: Searched for key: 6
+0:0000.5/0x64: 19.1% (0x00c800)
+0:0000.5/0x0a:  3.1% (0x001400)
+0:0000.5/0x1a:  3.1% (0x003400)
+0:0000.5/0x24:  3.1% (0x004800)
+0:0000.5/0x3d:  3.1% (0x007a00)
+0:0000.5/0x4b:  3.1% (0x009600)
+0:0000.5/0x5e:  3.1% (0x00bc00)
+0:0000.5/0x75:  3.1% (0x00ea00)
+0:0000.5/0x8c:  3.1% (0x011800)
+0:0000.5/0x9d:  3.1% (0x013a00)
+0:0000.5/0xa6:  3.1% (0x014c00)
+0:0000.5/0xb9:  3.1% (0x017200)
+0:0000.5/0xcf:  3.1% (0x019e00)
+0:0000.5/0xdd:  3.1% (0x01ba00)
+0:0000.5/0xeb:  3.1% (0x01d600)
+0:0000.5/0xf9:  3.1% (0x01f200)
+0:0000.5/0x60:  1.7% (0x00c000)
+0:0000.5/0x61:  1.7% (0x00c200)
+0:0000.5/0x62:  1.7% (0x00c400)
+0:0000.5/0x63:  1.7% (0x00c600)
+\end{verbatim}
+The result shows how Grover's algorithm performed the search through the optimal probability of finding the targeted key/value pair.
+
 \bibliography{refs} % this causes the references to be listed
 \bibliographystyle{apacite} % bibliography style
+\nocite{1402.4467}
 
 %% Appendices start here
-%\appendix
-%\include{appendix1}
+\appendix
+
+\titleformat{\chapter}{\normalfont\huge\bf}{\chaptertitlename \ \thechapter\ \ \ --}{20pt}{\huge\bf} 
+\chapter{LIQ$Ui\ket{}$ Experiment}
+
+\section{Entanglement Source Code}
+\begin{verbatim}
+#if INTERACTIVE
+#r @"..\bin\Liquid1.dll"                 
+#else
+namespace Microsoft.Research.Liquid // Namespace
+#endif
+
+open System                         // Support libraries
+open Microsoft.Research.Liquid      // Liquid libraries
+open Util                           // General utilites
+open Operations                     // Basic gates and operations
+
+// Rotates a qubit around any arbitrary angle in the X axis 
+let rotationX (theta:float) (qs:Qubits) =
+    let gate (theta:float) =
+        let name = "Rx" + theta.ToString("F2")
+        new Gate(
+            Name = name,
+            Help = sprintf "Rotate in X by: %f" theta,
+            Mat = (
+                let phi = theta / 2.0
+                let c = Math.Cos phi
+                let s = Math.Sin phi
+                CSMat(2,[0,0,c,0.;0,1,-s,0.;1,0,s,0.;1,1,c,0.])),
+            Draw    = "\\gate{" + name + "}"
+            )
+    (gate theta).Run qs
+    
+// Quantum funtion
+let quantumFunction (qubits:Qubits) =
+    rotationX (Math.PI/2.0) qubits
+    for qubit in qubits.Tail do 
+        CNOT [qubits.Head; qubit]
+    M >< qubits // Measures all the qubits
+
+
+
+
+[<LQD>]
+let Liquid(n:int) =
+    let stats = Array.create 2 0
+    let ket = Ket(n)
+    let circuit = Circuit.Compile quantumFunction ket.Qubits
+    show "Circuit 1:"
+    circuit.Dump()
+    circuit.RenderHT("Circuit1")
+    let circuit = circuit.GrowGates(ket)
+    show "Circuit 2:"
+    circuit.Dump()
+    circuit.RenderHT("Circuit2")
+    for i in 0..999 do
+        let qubits = ket.Reset(n) 
+        circuit.Run qubits
+        let value = qubits.Head.Bit.v
+        stats.[value] <- stats.[value] + 1
+    show "Measured: 0 = %d 1 = %d" stats.[0] stats.[1]
+\end{verbatim}
+
+\section{LIQ$Ui\ket{}$ Log File}
+\begin{verbatim}
+0:0000.0/=============== Logging to: Liquid.log opened ================
+0:0000.1/Circuit 1:
+0:0000.1/SEQ
+0:0000.1/  APPLY
+0:0000.1/    GATE Rx1.57 is a Rotate in X by: 1.570796 (Normal) 
+0:0000.1/      0.7071 -0.7071 
+0:0000.1/      0.7071 0.7071 
+0:0000.1/    WIRE(Id:0)
+0:0000.1/    WIRE(Id:1)
+0:0000.1/    WIRE(Id:2)
+0:0000.1/    WIRE(Id:3)
+0:0000.1/    WIRE(Id:4)
+0:0000.1/    WIRE(Id:5)
+0:0000.1/    WIRE(Id:6)
+0:0000.1/    WIRE(Id:7)
+0:0000.1/    WIRE(Id:8)
+0:0000.1/    WIRE(Id:9)
+0:0000.1/  APPLY
+0:0000.1/    GATE CNOT is a Controlled NOT (Normal) 
+0:0000.1/      1 0 0 0 
+0:0000.1/      0 1 0 0 
+0:0000.1/      0 0 0 1 
+0:0000.1/      0 0 1 0 
+0:0000.1/    WIRE(Id:0)
+0:0000.1/    WIRE(Id:1)
+0:0000.1/  APPLY
+0:0000.1/    GATE CNOT is a Controlled NOT (Normal) 
+0:0000.1/      1 0 0 0 
+0:0000.1/      0 1 0 0 
+0:0000.1/      0 0 0 1 
+0:0000.1/      0 0 1 0 
+0:0000.1/    WIRE(Id:0)
+0:0000.1/    WIRE(Id:2)
+.
+.
+.
+
+0:0000.1/Circuit 2:
+0:0000.1/SEQ
+0:0000.1/  APPLY
+0:0000.1/    GATE Rx1.57 is a Rotate in X by: 1.570796 (Normal) 
+0:0000.1/      0.7071 -0.7071 
+0:0000.1/      0.7071 0.7071 
+0:0000.1/    WIRE(Id:0)
+0:0000.1/    WIRE(Id:1)
+0:0000.1/    WIRE(Id:2)
+0:0000.1/    WIRE(Id:3)
+0:0000.1/    WIRE(Id:4)
+0:0000.1/    WIRE(Id:5)
+0:0000.1/    WIRE(Id:6)
+0:0000.1/    WIRE(Id:7)
+0:0000.1/    WIRE(Id:8)
+0:0000.1/    WIRE(Id:9)
+0:0000.1/  APPLY
+0:0000.1/    GATE 5FA8A3 is a 5FA8A3 (Normal) 
+0:0000.1/       0  0 1
+0:0000.1/       1  1 1
+0:0000.1/       2  2 1
+0:0000.1/       3  3 1
+0:0000.1/       4  4 1
+0:0000.1/       5  5 1
+0:0000.1/       6  6 1
+0:0000.1/       7  7 1
+.
+.
+.
+0:0000.1/Measured: 0 = 484 1 = 516
+0:0000.1/=============== Logging to: Liquid.log closed ================
+\end{verbatim}
+
+
 \end{document}
