@@ -127,7 +127,11 @@ I\ket{\Psi}=
 =\ket{\Psi}
 \] \\
 The matrix multiplication yields a new qubit state which is identical to the input state. This kind of quantum gate can be represented by a single wire as the following:
-$$\Qcircuit @C=5em @R=.7em { & \qw}$$
+\begin{figure}[htbp]
+  \centering
+  $$\Qcircuit @C=5em @R=.7em { & \qw}$$
+  \caption{A quantum gate}
+\end{figure}
 
 \subsection{The NOT Gate}
 The NOT gate, represented by the negation matrix, flips its input into the opposite value. This rule indicates that if the initial state of the input is 0, and result will be 1 and vice versa. Thus, given the negation matrix $X$, each state will be inverted into its opposite value after the multiplication process.
@@ -648,6 +652,26 @@ It is obvious that the circuit stored all the elements with equal probability. T
 0:0000.5/0x63:  1.7% (0x00c600)
 \end{verbatim}
 The result shows how Grover's algorithm performed the search through the optimal probability of finding the targeted key/value pair.
+
+\begingroup
+\renewcommand{\cleardoublepage}{}
+\renewcommand{\clearpage}{}
+\chapter{Evaluation}
+\endgroup
+
+\noindent Practical quantum computing requires a toolchain extending from the level of abstract algorithm down to physical particles. It is evident that experimenting quantum computing on a real quantum computer falls beyond the scope of this research. This is the reason why LIQ$Ui\ket{}$ has been selected as a software architecture for quantum computing experiment since it allows users to express a quantum algorithm written in a high-level programming language (F\# in this case) into the low-level machine-readable instructions for a quantum computer. \\\\
+Ideally, a programming language to be translated into the machine instructions for a quantum device ought to allow developers to implement quantum algorithms in a human-comprehensible way. This means the language should support a level of abstraction that is close to the way one naturally thinks about how the algorithm should be implemented. For example, if the quantum algorithm is primarily expressed by a computationally mathematical formula, the programming language used to implement that kind of algorithm should support such expression. Fortunately, F\# is a multi-paradigm programming language with a sufficient level of flexibility to fulfill that requirement. \\\\
+By using LIQ$Ui\ket{}$ as a quantum computing simulator, users are able to simulate various quantum algorithms along with other quantum operations, such as expressing quantum circuits using a high-level functional language (F\#), extracting circuit data structure for circuit optimisation, gate replacement, quantum error correction, circuit rendering and export. In essence, LIQ$Ui\ket{}$ allows users to experiment and understand how quantum computing can be applied to various real-world applications.
+
+\begingroup
+\renewcommand{\cleardoublepage}{}
+\renewcommand{\clearpage}{}
+\chapter{Reflection}
+\endgroup
+
+\noindent The computational power of quantum computing is based on the laws of quantum physics and various quantum phenomena, such as quantum entanglement,  quantum parallelism or quantum interference. Those events are radically different from what can be encountered in classical computing. Consequently, in order to comprehend these attributes and designs algorithms that outperform the well-known classical counterparts, one needs to understand the fundamental principles of quantum computing as well as why some certain problems cannot be solved by a conventional digital computer. \\\\
+Apart from the comprehension of the principles which quantum mechanic is based on, one also needs to understand the programming aspect of how to express a quantum algorithm in the form of a high-level programme which will be translated into a set of instructions for a quantum computer. Even though LIQ$Ui\ket{}$ already enables easy programming and compilation for the simulation of quantum algorithms and circuits, having knowledge of the functional programming paradigm also results in increased ease in the algorithm implementation process since the simulator adopts a high-level functional programming language (F\#) as its host language. \\\\
+Most of the modern quantum programming languages may be taxonomically classified into the imperative paradigm, the functional paradigm and others. However, many of recent quantum programming developments have focused on utilising functional quantum programming languages instead of imperative quantum programming languages due to its succinctness, which allows developers to express algorithms more clearly. Hence, it is valuable to understand the concept of functional programming as an alternative way of thinking and expressing algorithms for either classical or quantum computation, apart from programming in the imperative style which most of the developers have been accustomed.
 
 \bibliography{refs} % this causes the references to be listed
 \bibliographystyle{apacite} % bibliography style
