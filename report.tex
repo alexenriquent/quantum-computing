@@ -332,33 +332,18 @@ Quantum cryptography provides an elegant solution to the dilemma using Quantum K
 It is wildly acknowledged that potential quantum-mechanic applications are primarily based on quantum algorithms, computational algorithms run on a quantum computer with highly efficiency improvement over any classical algorithm. This section intends to deliver an overview of quantum algorithmics, focusing on Shor and Grover's algorithms.
 
 \subsection{Shor's Algorithm}
-Factoring a large integer on a classical computer is considered a highly time-intensive task. However, it would be different in the case of a quantum computer since each qubit used for factoring can be in a superposition, which implies that $n$ qubits can handle $2^n$ states simultaneously.  By increasing the number of qubits used in the prime factorisation process, this quantum quality can dramatically reduce the time used to factor an integer. However, the algorithm needs at least $2l$ qubits, where $l=(\log_2 (N))$ and $N$ is the integer to be factored \cite{shanghai}. According to the research on quantum computation and Shor's factoring algorithm \cite{cwi}, the complexity of Shor's algorithm is $O((\log n)^2(\log\log n)(\log\log\log n))$, which can be alternatively expressed as ${\tilde O}((\log n)^2)$. Shor also indicates that the efficiency of factoring a large integer in polynomial time relies on the efficiency of modular exponentiation and the quantum Fourier transform (QFT) (See Appendix A for the definition and an example of the QFT). Shor's algorithm follows the processes outlined below:
-\begin{enumerate}
-\item Select a random $x$, such that $x < N$
-\item Compute $f = gcd(x,N)$. This may be done by the Euclidean algorithm. If $f\neq1$, then return $f$ since it is a prime factor.
-\item Find the least $r$ such that $x^r\equiv1$ $mod$ $N$, where $r$ is a repetition period.
-\item If either $gcd(x^{r/2}-1,N)\neq1$ or $gcd(x^{r/2}+1,N)\neq1$, then return it as a prime factor.
-\item Otherwise, repeat the process from the first step.
-\end{enumerate}
-This algorithm consists of two parts, including the classical and quantum parts. The classical part includes modular exponentiation using repeated squarings and the quantum part includes the concept of the QFT, which heavily relies on quantum parallelism to solve the problem \cite{mcgill}. 
+Factoring a large integer on a classical computer is considered a highly time-intensive task. However, it would be different in the case of a quantum computer since each qubit used for factoring can be in a superposition, which implies that $n$ qubits can handle $2^n$ states simultaneously.  By increasing the number of qubits used in the prime factorisation process, this quantum quality can dramatically reduce the time used to factor an integer. However, the algorithm needs at least $2l$ qubits, where $l=(\log_2 (N))$ and $N$ is the integer to be factored \cite{shanghai}. According to the research on quantum computation and Shor's factoring algorithm \cite{cwi}, the complexity of Shor's algorithm is $O((\log n)^2(\log\log n)(\log\log\log n))$, which can be alternatively expressed as ${\tilde O}((\log n)^2)$. Shor also indicates that the efficiency of factoring a large integer in polynomial time relies on the efficiency of modular exponentiation and the quantum Fourier transform (QFT) (See Appendix A for the definition and an example of the QFT). \\\\
+The algorithm begins by selecting a random $x$, such that $x < N$ where $N$ is the integer to be factored, and computing $f = gcd(x,N)$. This may be done by the Euclidean algorithm. If $f\neq1$, then it will return $f$ as a prime factor. The next step is to find the least $r$ such that $x^r\equiv1$ $mod$ $N$, where $r$ is a repetition period. At this point, if either $gcd(x^{r/2}-1,N)\neq1$ or $gcd(x^{r/2}+1,N)\neq1$, then it is also a prime factor. Otherwise, the process will repeat until the algorithm successfully factors the integer $N$. \\\\
+Shor's algorithm consists of two parts, including the classical and quantum parts. The classical part includes modular exponentiation using repeated squarings and the quantum part includes the concept of the QFT, which heavily relies on quantum parallelism to solve the problem \cite{mcgill}. 
 
 \subsection{Grover's Algorithm}
-Grover's algorithm is one of the most well-known quantum algorithms. It is extremely beneficial to any large technology-based organisation which has its data stored in a database where searching is required. This process of searching is incredibly time-efficient compared with any other classical algorithms. For a search over a set of unordered data, the best classical algorithm requires $O(N)$ time, while Grover's algorithm performs a search in only $O(\sqrt[]{N})$ operations to find the unique element that satisfies a particular condition \cite{umass}, which is a quadratic speedup. Grover's algorithm can be summarised as follows:
-\begin{enumerate}
-\item Prepare a quantum register of $n$ qubits, where $n$ is a number of qubits necessary to represent the search space of size $2^n=N$. All qubits need to be initialised to the state $\ket{0}$.
-\item Compute $P(x_i)$ where the superposition is calculated.
+Grover's algorithm is one of the most well-known quantum algorithms. It is extremely beneficial to any large technology-based organisation which has its data stored in a database where searching is required. This process of searching is incredibly time-efficient compared with any other classical algorithms. For a search over a set of unordered data, the best classical algorithm requires $O(N)$ time, while Grover's algorithm performs a search in only $O(\sqrt[]{N})$ operations to find the unique element that satisfies a particular condition \cite{umass}, which is a quadratic speedup. \\\\
+The algorithm begins by preparing a quantum register of $n$ qubits, where $n$ is a number of qubits necessary to represent the search space of size $2^n=N$. All qubits need to be initialised to the state $\ket{0}$. After that, $P(x_i)$ on the register (with a superposition) will be computed by the following formula:
 $$\frac{1}{\sqrt[]{2^n}}\sum_{x=0}^{n-1}\ket{x,P(x)}$$
-\item Invert amplitude of $a_j$ to $-a_j$ such that $P(x_j)=1$. Then apply inversion to increase amplitude of $x_j$ with $P(x_j)=1$.
-\item Repeat the steps 2 and 3 $\frac{\pi}{4}\sqrt[]{2^n}$ times.
-\item Measure the result.
-\end{enumerate}
+The next step is to invert amplitude of $a_j$ to $-a_j$ such that $P(x_j)=1$ and apply inversion to increase amplitude of $x_j$ with $P(x_j)=1$. The process will repeat the $P(x_i)$ calculation step and the amplitude amplification process for $\frac{\pi}{4}\sqrt[]{2^n}$ times (this number is used to ensure that the execution terminates when the desired state is reached) and then measure the end result. \\\\
 In order to achieve such performance, Grover's algorithm relies on the superposition of qubit states. Additionally, it also utilises the amplitude amplification algorithms which are unique to quantum computing to solve the problem \cite{umass}.
 
-\begingroup
-\renewcommand{\cleardoublepage}{}
-\renewcommand{\clearpage}{}
 \chapter{LIQ$Ui\ket{}$}
-\endgroup
 
 \section{Introduction to LIQ$Ui\ket{}$}
 Language-Integrated Quantum Operations (LIQ$Ui\ket{}$) is a modular software platform for quantum computing developed by the Quantum Architectures and Computation Group (QuArC) \cite{liquid-overview}. It includes an embedded and domain-specific language designed essentially for quantum algorithms with F\# as the primary programming language. The software also allows the simulation of quantum algorithms and circuits along with supporting the extraction of a circuit data structure which is useful for circuit optimisation, gate replacement, quantum error correction, rendering or export \cite{liquid-overview,liquid}. \\\\
