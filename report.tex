@@ -64,9 +64,9 @@ In 1998, researchers at the University Innsbruck in Austria put the idea of quan
 
 \section{Qubits}
 A bit is the most fundamental building block of the classical model of computer \cite{qc-history}, which has a single logical value, either false or true or simply 0 or 1. In a quantum computer, the quantum bit or qubit also has two computational basis states; 0 and 1, represented by $\ket{0}$ and $\ket{1}$ respectively. However, it can be in a superposition of quantum mechanical two-state systems \cite{qc-states}, meaning the qubit can be in both state 0 and 1 simultaneously. A superposition of the qubit can be represented by $\alpha\ket{0}+\beta\ket{1}$ for some $\alpha$ and $\beta$ such that $|\alpha|^2+|\beta|^2=1$. \\\\
-In computer system, information is represented in binary form since it is stored in the registers \cite{qc-concepts}. For example, the non-negative numbers can be represented in binary form as
+In the computer system, information is represented in binary form since it is stored in the registers \cite{qc-concepts}. For example, the non-negative numbers can be represented in binary form as
 $$0,1,10,11,100,101,110,111...$$
-A number of bits can determine how many configurations that binary string can represent since $2^n=y$ where $n$ is a number of bits and $y$ is a number of different configurations. For example, a three-bit binary string can represent $2^3=8$ numbers including 0 to 7. On the other hand, in quantum computers, the non-negative numbers can be represented in binary form as
+The number of bits can determine how many configurations that binary string can represent since $2^n=y$ where $n$ is the number of bits and $y$ is the number of different configurations. For example, a three-bit binary string can represent $2^3=8$ numbers including 0 to 7. On the other hand, in quantum computers, the non-negative numbers can be represented in binary form as
 $$\ket{0},\ket{1},\ket{1}\otimes\ket{0},\ket{1}\otimes\ket{1},\ket{1}\otimes\ket{0}\otimes\ket{0}...$$
 In this case, an integer can be written in the form of $\ket{x_{n-1}}\otimes\ket{x_{n-2}}\otimes\ket{x_{n-3}}\otimes...\otimes\ket{x_1}\otimes\ket{x_0}$ where $\ket{x}$ is a single qubit and $x\in\{0,1\}$. Therefore, a quantum register of size three is able to represent positive integers from 0 to 7 as the following:
 $$\ket{0}\otimes\ket{0}\otimes\ket{0}\equiv\ket{000}\equiv\ket{0} \ ...\ \ket{1}\otimes\ket{1}\otimes\ket{1}\equiv\ket{111}\equiv\ket{7}$$
@@ -134,7 +134,7 @@ The matrix multiplication yields a new qubit state which is identical to the inp
 \end{figure}
 
 \subsection{The NOT Gate}
-The NOT gate, represented by the negation matrix, flips its input into the opposite value. This rule indicates that if the initial state of the input is 0, and result will be 1 and vice versa. Thus, given the negation matrix $X$, each state will be inverted into its opposite value after the multiplication process.
+The NOT gate, represented by the negation matrix, flips its input into the opposite value. This rule indicates that if the initial state of the input is 0, the result will be 1 and if the initial state of the input is 1, the result will be 0. Thus, given the negation matrix $X$, each state will be inverted into its opposite value after the multiplication process.
 \[
 X=
 \begin{bmatrix}
@@ -198,7 +198,7 @@ The following diagram represents the Hadamard gate in the quantum circuit:
 \end{figure}
 
 \subsection{Entanglement}
-Each qubit has its own quantum state. However, two or more qubits can act on one another which leads to the formation of an entangled system \cite{entangle}. When qubit states are entangled, it needs to be treated as the entire system or overall state, instead of individual quantum state. For example, given a two-bit system, it can be any integer between the range 0 and 3 inclusive as the following:
+In order to explain the CNOT gate, it is necessary to understand the concept of quantum entanglement. As mentioned before, each qubit has its own quantum state. However, two or more qubits can act on one another which leads to the formation of an entangled system \cite{entangle}. When qubit states are entangled, it needs to be treated as the entire system or overall state, instead of an individual quantum state. For example, given a two-bit system, it can be any integer between the range 0 and 3 inclusive as the following:
 $$\ket{00}+\ket{01}+\ket{10}+\ket{11}$$
 Thus, its normalised superposition can be expressed as
 $$\ket{\Psi}=\alpha\ket{00}+\beta\ket{01}+\gamma\ket{10}+\delta\ket{11}$$
@@ -274,7 +274,7 @@ CNOT\ket{\Psi}=
     \gamma
 \end{bmatrix}
 \] \\
-In order to make the demonstration more concrete, the state can be represented with a $4\times2$ matrix representing state values of both qubits.
+In order to make the demonstration more concrete, the state can be represented by a $4\times2$ matrix representing state values of both qubits.
 \[
 CNOT\ket{\Psi}=
 \begin{bmatrix}
@@ -304,6 +304,7 @@ The following diagram illustrates the CNOT gate in the quantum circuit:
   \caption{The CNOT gate}
 \end{figure}
 
+\newpage
 \section{Unitary Transformation}
 As demonstrated in the quantum gates section, unitary transformations can be justified as matrix operations on vectors. This kind of quantum state manipulation can be represented as the following:
 $$\ket{\Psi}\mapsto M\cdot\ket{\Psi}$$
@@ -313,11 +314,13 @@ In this case $\ket{\Psi}$ is a quantum state and $M$ is a matrix. $M$ is unitary
 Contrary to the concept of unitary transformations, measurements are not reversible and therefore information destructive \cite{non-qc}. This kind of operation is effective in retrieving classical information back from quantum information but may also interfere or destroy the quantum state \cite{measure}. \\\\
 For example, given the quantum state $\ket{\Psi}=\alpha\ket{0}+\beta\ket{1}$, the state $\ket{0}$ with a probability $\alpha^2$ and the state $\ket{1}$ with a probability $\beta^2$ will be used to measure the actual state $\ket{\Psi}$. The qubit will be determined to be in one of both states ($\ket{0}$ or $\ket{1}$) until a new transformation occurs. To make the example more concrete, given the qubit state $\ket{\Psi}=(+0.6)+(-0.8)$, the probability of the result being $\ket{0}$ is $\alpha^2=0.6^2=36\%$ and the probability of the result being $\ket{1}$ is $\beta^2=-0.8^2=64\%$.
 
-\begingroup
-\renewcommand{\cleardoublepage}{}
-\renewcommand{\clearpage}{}
+%\begingroup
+%\renewcommand{\cleardoublepage}{}
+%\renewcommand{\clearpage}{}
+%\chapter{Applications}
+%\endgroup
+
 \chapter{Applications}
-\endgroup
 
 Since quantum computing is relatively a new area of study, many of its real-world applications are not yet to be seen. Nevertheless, this young field has been being explored by researchers who acknowledge its possibility in advancing the area of high-performance computing. This section delineates potential applications of quantum computing in cryptography along with its classical quantum algorithms, including Shor and Grover's algorithms.
 
@@ -332,12 +335,12 @@ It is wildly acknowledged that potential quantum-mechanic applications are prima
 Factoring a large integer on a classical computer is considered a highly time-intensive task. However, it would be different in the case of a quantum computer since each qubit used for factoring can be in a superposition, which implies that $n$ qubits can handle $2^n$ states simultaneously.  By increasing the number of qubits used in the prime factorisation process, this quantum quality can dramatically reduce the time used to factor an integer. However, the algorithm needs at least $2l$ qubits, where $l=(\log_2 (N))$ and $N$ is the integer to be factored \cite{shanghai}. According to the research on quantum computation and Shor's factoring algorithm \cite{cwi}, the complexity of Shor's algorithm is $O((\log n)^2(\log\log n)(\log\log\log n))$, which can be alternatively expressed as ${\tilde O}((\log n)^2)$. Shor also indicates that the efficiency of factoring a large integer in polynomial time relies on the efficiency of modular exponentiation and the quantum Fourier transform (QFT) (See Appendix A for the definition and an example of the QFT). Shor's algorithm follows the processes outlined below:
 \begin{enumerate}
 \item Select a random $x$, such that $x < N$
-\item Compute $f = gcd(x,N)$. This may be done using the Euclidean algorithm. If $f\neq1$, then return $f$ since it is a prime factor.
+\item Compute $f = gcd(x,N)$. This may be done by the Euclidean algorithm. If $f\neq1$, then return $f$ since it is a prime factor.
 \item Find the least $r$ such that $x^r\equiv1$ $mod$ $N$, where $r$ is a repetition period.
 \item If either $gcd(x^{r/2}-1,N)\neq1$ or $gcd(x^{r/2}+1,N)\neq1$, then return it as a prime factor.
 \item Otherwise, repeat the process from the first step.
 \end{enumerate}
-This algorithm consists of two parts, including the classical and quantum parts. The classical part includes modular exponentiation using repeated squarings and the quantum part includes the concept of QFT, which heavily relies on quantum parallelism to solve the problem \cite{mcgill}. 
+This algorithm consists of two parts, including the classical and quantum parts. The classical part includes modular exponentiation using repeated squarings and the quantum part includes the concept of the QFT, which heavily relies on quantum parallelism to solve the problem \cite{mcgill}. 
 
 \subsection{Grover's Algorithm}
 Grover's algorithm is one of the most well-known quantum algorithms. It is extremely beneficial to any large technology-based organisation which has its data stored in a database where searching is required. This process of searching is incredibly time-efficient compared with any other classical algorithms. For a search over a set of unordered data, the best classical algorithm requires $O(N)$ time, while Grover's algorithm performs a search in only $O(\sqrt[]{N})$ operations to find the unique element that satisfies a particular condition \cite{umass}, which is a quadratic speedup. Grover's algorithm can be summarised as follows:
@@ -346,7 +349,7 @@ Grover's algorithm is one of the most well-known quantum algorithms. It is extre
 \item Compute $P(x_i)$ where the superposition is calculated.
 $$\frac{1}{\sqrt[]{2^n}}\sum_{x=0}^{n-1}\ket{x,P(x)}$$
 \item Invert amplitude of $a_j$ to $-a_j$ such that $P(x_j)=1$. Then apply inversion to increase amplitude of $x_j$ with $P(x_j)=1$.
-\item Repeat steps 2 to 3 $\frac{\pi}{4}\sqrt[]{2^n}$ times.
+\item Repeat the steps 2 and 3 $\frac{\pi}{4}\sqrt[]{2^n}$ times.
 \item Measure the result.
 \end{enumerate}
 In order to achieve such performance, Grover's algorithm relies on the superposition of qubit states. Additionally, it also utilises the amplitude amplification algorithms which are unique to quantum computing to solve the problem \cite{umass}.
@@ -359,7 +362,7 @@ In order to achieve such performance, Grover's algorithm relies on the superposi
 
 \section{Introduction to LIQ$Ui\ket{}$}
 Language-Integrated Quantum Operations (LIQ$Ui\ket{}$) is a modular software platform for quantum computing developed by the Quantum Architectures and Computation Group (QuArC) \cite{liquid-overview}. It includes an embedded and domain-specific language designed essentially for quantum algorithms with F\# as the primary programming language. The software also allows the simulation of quantum algorithms and circuits along with supporting the extraction of a circuit data structure which is useful for circuit optimisation, gate replacement, quantum error correction, rendering or export \cite{liquid-overview,liquid}. \\\\
-LIQ$Ui\ket{}$ allows the circuit simulation up to 30 qubits on a classical computer with 32 GB of RAM. According to the Microsoft Research's statistics, the largest integer factored on LIQ$Ui\ket{}$, based on Beauregard’s circuit for Shor's algorithm, is a 13-bit integer. The process required 27 qubits, approximately 0.5 million gates and 5 days runtime to produce the prime factoring result \cite{liquid-overview}.
+LIQ$Ui\ket{}$ allows the circuit simulation up to 30 qubits on a classical computer with 32 GB of RAM. According to the Microsoft Research's statistics, the largest integer factored on LIQ$Ui\ket{}$, based on Beauregard's circuit for Shor's algorithm, is a 13-bit integer. The process required 27 qubits, approximately 0.5 million gates and 5 days runtime to produce the prime factoring result \cite{liquid-overview}.
 
 \section{LIQ$Ui\ket{}$ Experiment}
 This experiment explores functionalities of LIQ$Ui\ket{}$ with Visual Studio as the main Integrated Development Environment (IDE) since it provides a full compilation environment linked to the LIQ$Ui\ket{}$ library (dll), IntelliSense editing and a full debugging environment.
@@ -417,7 +420,7 @@ The result is different with 50\% probability of the state 0 or 1.
 \end{verbatim}
 
 \subsection{User-defined Gate}
-This program uses the user-defined gate, namely $rotationX$. This gate can be used to rotate the qubit around any arbitrary angle in the $X$ axis.
+This program uses the user-defined gate, namely $rotationX$. This gate can be used to rotate the qubit around any arbitrary angle in the X-axis.
 \begin{verbatim}
 let rotationX (theta:float) (qs:Qubits) =
     let gate (theta:float) =
@@ -440,7 +443,7 @@ let quantumFunction (qubits:Qubits) =
     rotationX (Math.PI/2.0) qubits
     M qubits
 \end{verbatim}
-The result should be similar with the result from the circuit with the Hadamard gate.
+The result should be similar to the result from the circuit with the Hadamard gate.
 \begin{verbatim}
 0:0000.0/=============== Logging to: Liquid.log opened ================
 0:0000.1/Measured: 0 = 501 1 = 499
@@ -502,8 +505,9 @@ The \texttt{RenderHT} function produces a diagram of the current quantum circuit
 \caption{The circuit after being optimised}
 \end{figure}
 
+\newpage
 \section{Built-in Samples}
-LIQ$Ui\ket{}$ contains a number of built-in samples for some of the specific quantum algorithms, including Shor’s algorithm, quantum teleportation, quantum error correction, quantum linear algebra, quantum associated memory and the simulation of the ground state energy of a molecule \cite{liquid-manual}. These executable samples gives users a glimpse of what LIQ$Ui\ket{}$ can do and application areas that it has been applied to. This section focuses on three built-in examples which are relevant to the concepts and applications explained in this report, including entanglement, Shor’s algorithm and quantum associative memory (utilising Grover’s algorithm).
+LIQ$Ui\ket{}$ contains a number of built-in samples for some of the specific quantum algorithms, including Shor’s algorithm, quantum teleportation, quantum error correction, quantum linear algebra, quantum associated memory and the simulation of the ground state energy of a molecule \cite{liquid-manual}. These executable samples gives users a glimpse of what LIQ$Ui\ket{}$ can do and application areas that it has been applied to. This section focuses on three built-in examples which are relevant to the concepts and applications explained in this report, including entanglement, Shor’s algorithm and quantum associative memory (utilising Grover’s algorithm) (See Appendix C for the list of all built-in samples).
 
 \subsection{Entanglement}
 This entanglement function produces detailed statistics the duration the simulator takes to perform various operations. It can be called with liquid \texttt{\_\_Entangle1(n)}, where $n$ is a number of qubits to be entangled (typically 10 to 22). The sample result is as the following:
@@ -525,7 +529,7 @@ This entanglement function produces detailed statistics the duration the simulat
 0:0000.0/   0.013    0.001    0.020 Did Measure
 0:0000.0/=============== Logging to: Liquid.log closed ================
 \end{verbatim}
-Apart from above example, LIQ$Ui\ket{}$ also provides another two functions which perform quantum entanglement on qubits, namely \texttt{\_\_Entangle2} and \texttt{\_\_Entangles}. The \texttt{\_\_Entangle2} function operates in the same way with \texttt{\_\_Enytangle1}. However, it also produces diagrams illustrating the circuits in the form of \texttt{htm} and \texttt{tex} files. The \texttt{\_\_Entangles} function runs a hundred entanglement tests on 16 qubits. At the end of the process, half of the qubits should be in state 1 and another half should be in the opposite state.
+Apart from above example, LIQ$Ui\ket{}$ also provides another two functions which perform quantum entanglement on qubits, namely \texttt{\_\_Entangle2} and \texttt{\_\_Entangles}. The \texttt{\_\_Entangle2} function operates in the same way with \texttt{\_\_Entangle1}. However, it also produces diagrams illustrating the circuits in the form of \texttt{htm} and \texttt{tex} files. The \texttt{\_\_Entangles} function runs a hundred entanglement tests on 16 qubits. At the end of the process, half of the qubits should be in state 1 and another half should be in the opposite state.
 
 \subsection{Shor's Algorithm}
 Shor's polynomial-time prime factorisation algorithm is one of the sophisticated built-in tests among other samples. The command \texttt{liquid \_\_Shor(n,true)} can be used to run the algorithm. The command takes two parameters. The first is the integer to be factored and the second is the option whether to optimise (by combining) the quantum circuit. The following is the result of prime factorisation using Shor's algorithm with 21 as an input:
@@ -656,25 +660,29 @@ It is obvious that the circuit stored all the elements with equal probability. T
 \end{verbatim}
 The result shows how Grover's algorithm performed the search through the optimal probability of finding the targeted key/value pair.
 
-\begingroup
-\renewcommand{\cleardoublepage}{}
-\renewcommand{\clearpage}{}
+%\begingroup
+%\renewcommand{\cleardoublepage}{}
+%\renewcommand{\clearpage}{}
+%\chapter{Evaluation}
+%\endgroup
+
 \chapter{Evaluation}
-\endgroup
 
 \noindent Practical quantum computing requires a toolchain extending from the level of abstract algorithm down to physical particles \cite{acm}. It is evident that experimenting quantum computing on a real quantum computer falls beyond the scope of this research report. This is the reason why LIQ$Ui\ket{}$ has been selected as a software architecture for quantum computing experiment since it allows users to express a quantum algorithm written in a high-level programming language (F\# in this case) into the low-level machine-readable instructions for a quantum computer \cite{liquid-overview}. \\\\
 Ideally, a programming language to be translated into the machine instructions for a quantum device ought to allow developers to implement quantum algorithms in a human-comprehensible way \cite{acm}. This means the language should support a level of abstraction that is close to the way one naturally thinks about how the algorithm should be implemented. For example, if the quantum algorithm is primarily expressed by a computationally mathematical formula, the programming language used to implement that kind of algorithm should support such expression. Fortunately, F\# is a multi-paradigm programming language with a sufficient level of flexibility to fulfill that requirement. \\\\
 By using LIQ$Ui\ket{}$ as a quantum computing simulator, users are able to simulate various quantum algorithms along with other quantum operations, such as expressing quantum circuits using a high-level functional language (F\#), extracting circuit data structure for circuit optimisation, gate replacement, quantum error correction, circuit rendering and export \cite{liquid-overview}. In essence, LIQ$Ui\ket{}$ allows users to experiment and understand how quantum computing can be applied to various real-world applications.
 
-\begingroup
-\renewcommand{\cleardoublepage}{}
-\renewcommand{\clearpage}{}
-\chapter{Reflection}
-\endgroup
+%\begingroup
+%\renewcommand{\cleardoublepage}{}
+%\renewcommand{\clearpage}{}
+%\chapter{Reflection}
+%\endgroup
 
-\noindent The computational power of quantum computing is based on the laws of quantum physics and various quantum phenomena, such as quantum entanglement,  quantum parallelism or quantum interference. Those events are radically different from what can be encountered in classical computing. Consequently, in order to comprehend these attributes and designs algorithms that outperform the well-known classical counterparts, one needs to understand the fundamental principles of quantum computing as well as why some certain problems cannot be solved by a conventional digital computer. \\\\
-Apart from the comprehension of the principles which quantum mechanic is based on, one also needs to understand the programming aspect of how to express a quantum algorithm in the form of a high-level programme which will be translated into a set of instructions for a quantum computer. Even though LIQ$Ui\ket{}$ already enables easy programming and compilation for the simulation of quantum algorithms and circuits, having knowledge of the functional programming paradigm also results in increased ease in the algorithm implementation process since the simulator adopts a high-level functional programming language (F\#) as its host language. \\\\
-Most of the modern quantum programming languages may be taxonomically classified into the imperative paradigm, the functional paradigm and others. However, many of recent quantum programming developments have focused on utilising functional quantum programming languages instead of imperative quantum programming languages due to its succinctness, which allows developers to express algorithms more clearly. Hence, it is valuable to understand the concept of functional programming as an alternative way of thinking and expressing algorithms for either classical or quantum computation, apart from programming in the imperative style which most of the developers have been accustomed.
+\chapter{Reflection}
+
+\noindent The computational power of quantum computing is based on the laws of quantum physics and various quantum phenomena, such as quantum entanglement,  quantum parallelism or quantum interference \cite{acm}. Those events are radically different from what can be encountered in classical computing. Consequently, in order to comprehend these attributes and designs algorithms that outperform the well-known classical counterparts, it is mandatory to understand the fundamental principles of quantum computing as well as why some certain problems cannot be solved by a conventional digital computer. \\\\
+Apart from the comprehension of the principles which quantum mechanic is based on, it is also necessary to understand the programming aspect of how to express a quantum algorithm in the form of a high-level program which will be translated into a set of instructions for a quantum computer. Even though LIQ$Ui\ket{}$ already enables easy programming and compilation for the simulation of quantum algorithms and circuits, having knowledge of the functional programming paradigm also results in increased ease in the algorithm implementation process since the simulator adopts a high-level functional programming language (F\#) as its host language. \\\\
+Most of the modern quantum programming languages may be taxonomically classified into the imperative paradigm, the functional paradigm and others \cite{qc-languages}. However, many of recent quantum programming developments have focused on utilising functional quantum programming languages instead of imperative quantum programming languages due to its succinctness \cite{functional}, which allows developers to express algorithms more clearly. Hence, it is valuable to understand the concept of functional programming as an alternative way of thinking and expressing algorithms for either classical or quantum computation, apart from programming in the imperative style which most of the developers have been accustomed.
 
 \bibliography{refs} % this causes the references to be listed
 \bibliographystyle{apacite} % bibliography style
@@ -687,7 +695,7 @@ Most of the modern quantum programming languages may be taxonomically classified
 
 \chapter{Quantum Fourier Transform}
 
-According to the definition of the quantum Fourier transform (QFT), it is the discrete Fourier transform (DFT) applied to the amplitudes of a quantum state \cite{washington}. The DFT is a version of Fourier transform that operates on a discrete set of data. The DFT of a vector can be defined as:
+According to the definition of the quantum Fourier transform (QFT), it is the discrete Fourier transform (DFT) applied to the amplitudes of a quantum state that performs a linear transformation on qubits \cite{washington}. The DFT is a version of Fourier transform that performs a transformation on a discrete number of frequencies and discrete-time signal. The DFT of a vector can be defined as:
 $$\tilde{f}(k)=\frac{1}{\sqrt[]{N}}\sum_{j=0}^{N-1}e^{2\pi i(\frac{jk}{N})}f(j)$$ \\
 The QFT is considered the same transformation as the DFT. However, since the transformation occurs on the qubit states, a unitary operator $F$ on $n$ qubits $(N=2^n)$ must be defined as:
 $$F\ket{j}=\frac{1}{\sqrt[]{2^n}}\sum_{j=0}^{2^n-1}e^{2\pi i(\frac{jk}{2^n})}\ket{k}$$\\
@@ -830,6 +838,45 @@ let Liquid(n:int) =
 \begin{verbatim}
 0:0000.1/Measured: 0 = 484 1 = 516
 0:0000.1/=============== Logging to: Liquid.log closed ================
+\end{verbatim}
+
+\chapter{Built-in Samples}
+
+\begin{verbatim}
+===================================================================================
+=   The Language-Integrated Quantum Operations (LIQUi|>) Simulator                =
+=   Copyright (c) 2015,2016 Microsoft Corporation                                 =
+=   If you use LIQUi|> in your research, please follow the guidelines at          =
+=   https://github.com/msr-quarc/Liquid for citing LIQUi|> in your publications.  =
+===================================================================================
+
+TESTS (all start with two underscores):
+__Big()             Try to run large entanglement tests (16 through 33 qubits)
+__Chem(m)           Solve Ground State for molecule m (e.g., H2O)
+__ChemFull(...)     See QChem docs for all the arguments
+__Correct()         Use 15 qubits+random circs to test teleport
+__Entangle1(cnt)    Run n qubit entanglement circuit (for timing purposes)
+__Entangle2(cnt)    Entangle1 with compiled and optimized circuits
+__Entangles()       Draw and run 100 instances of 16 qubit entanglement test
+__EntEnt()          Entanglement entropy test
+__EIGS()            Check eigevalues using ARPACK
+__EPR()             Draw EPR circuit (.htm and .tex files)
+__Ferro(false,true) Test ferro magnetic coupling with true=full, true=runonce
+__JointCNOT()       Run CNOTs defined by Joint measurements
+__Noise1(d,i,p)     d=# of idle gates, i=iters, p=probOfNoise
+__NoiseAmp()        Amplitude damping (non-unitary) noise
+__QECC()            Test teleport with errors and Steane7 code (gen drawing)
+__QFTbench()        Benchmark QFT used in Shor (func,circ,optimized)
+__QLSA()            Test of HHL linear equation solver
+__QuAM()            Quantum Associative Memory
+__QWalk(typ)        Walk tiny,tree,graph or RMat file with graph information
+__Ramsey33()        Try to find a Ramsey(3,3) solution
+__SG()              Test spin glass model
+__Shor(N,true)      Factor N using Shor's algo false=direct true=optimized
+__show("str")       Test routine to echo str and then exit
+__Steane7()         Test basic error injection in Steane7 code
+__Teleport()        Draw and run original, circuit and grown versions
+__TSP(5)            Try to find a Traveling Salesman solution for 5 to 8 cities
 \end{verbatim}
 
 \end{document}
