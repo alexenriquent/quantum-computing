@@ -79,7 +79,7 @@ $$\equiv\sum_{x=0}^{7}\ket{x}$$
 
 \section{Quantum Gates}
 
-In order to explain the concept of quantum gates, the basis states must be represented differently from the previous section. Since matrix transformations will be used to demonstrate the concept of each gate, each qubit state will be represented by any two orthogonal unit column vectors as follows: 
+In order to explain the concept of quantum gates, the basis states must be represented differently from the previous section. Since matrix transformations will be used to demonstrate the concept of each gate, each qubit state will be represented by two orthogonal unit column vectors as follows: 
 \[
 \ket{0}=
 \begin{bmatrix}
@@ -92,7 +92,7 @@ In order to explain the concept of quantum gates, the basis states must be repre
     1 
 \end{bmatrix}
 \]
-In this case, the state $\ket{0}$ and $\ket{1}$ are the representations of logical zero and logical one respectively. The qubit's actual state $\ket{\Psi}$ or its superposition can be represented by
+In this case, the state $\ket{0}$ and $\ket{1}$ are the representations of logical zero and logical one respectively. The qubit's state $\ket{\Psi}$ with its superposition can be represented by
 \[
 \ket{\Psi}=\alpha\ket{0}+\beta\ket{1}=
 \begin{bmatrix}
@@ -308,7 +308,7 @@ The following diagram illustrates the CNOT gate in the quantum circuit:
 \section{Unitary Transformation}
 As demonstrated in the quantum gates section, unitary transformations can be justified as matrix operations on vectors. This kind of quantum state manipulation can be represented as the following:
 $$\ket{\Psi}\mapsto M\cdot\ket{\Psi}$$
-In this case $\ket{\Psi}$ is a quantum state and $M$ is a matrix. $M$ is unitary if $M'\cdot M=I$ such that $I$ is the identity matrix. Unitary transformations are reversible and opposed to being information destructive \cite{non-qc}.
+In this case, $\ket{\Psi}$ is a quantum state and $M$ is a matrix. $M$ is unitary if $M'\cdot M=I$ such that $I$ is the identity matrix. Unitary transformations are reversible and opposed to being information destructive \cite{non-qc}.
 
 \section{Measurements}
 Contrary to the concept of unitary transformations, measurements are not reversible and therefore information destructive \cite{non-qc}. This kind of operation is effective in retrieving classical information back from quantum information but may also interfere or destroy the quantum state \cite{measure}. \\\\
