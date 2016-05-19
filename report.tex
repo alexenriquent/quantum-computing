@@ -22,9 +22,10 @@
 \usepackage{physics}
 \usepackage{amsmath}
 \usepackage{apacite}
-
 \usepackage{graphicx}
 \graphicspath{ {images/} }
+\usepackage{multirow}
+\usepackage{array}
 
 %% End of preamble, the actual document starts here
 
@@ -34,7 +35,7 @@
 
 %% Generate contents etc
 \tableofcontents
-\listoffigures
+%\listoffigures
 %\listoftables
 
 %% These include the actual text
@@ -79,20 +80,10 @@ $$\equiv\sum_{x=0}^{7}\ket{x}$$
 
 \section{Quantum Gates}
 
-In order to explain the concept of quantum gates, the basis states must be represented differently from the previous section. Since matrix transformations will be used to demonstrate the concept of each gate, each qubit state will be represented by two orthogonal unit column vectors as follows: 
-\[
-\ket{0}=
-\begin{bmatrix}
-    1 \\
-    0 
-\end{bmatrix}
-,\ket{1}=
-\begin{bmatrix}
-    0 \\
-    1 
-\end{bmatrix}
-\]
-In this case, the state $\ket{0}$ and $\ket{1}$ are the representations of logical zero and logical one respectively. The qubit's state $\ket{\Psi}$ with its superposition can be represented by
+In this section, matrix transformations will be used to demonstrate the concept of each quantum gate. According to the qubit theory, the basis states can be represented by
+$$\ket{0}$$
+$$\ket{1}$$
+In this case, the state $\ket{0}$ and $\ket{1}$ are the representations of logical zero and logical one respectively. The qubit's state $\ket{\Psi}$ with its superposition can be represented by the linear combination of both basis states and a vector as the following:
 \[
 \ket{\Psi}=\alpha\ket{0}+\beta\ket{1}=
 \begin{bmatrix}
@@ -100,8 +91,9 @@ In this case, the state $\ket{0}$ and $\ket{1}$ are the representations of logic
     \beta 
 \end{bmatrix}
 \]
-\subsection{Quantum Gates}
-Each quantum gate can be represented by a square matrix. It also needs to be unitary since being unitary preserves the unit length of the state vector $\ket{\Psi}$ after matrix multiplication \cite{umass} and the new state must meet the normalisation criteria $|\alpha|^2+|\beta|^2=1$. Thus, given the $2\times2$ identity matrix $I$, the output state will remain in the same state. 
+\subsection{The Identity Gate}
+Each quantum gate can be represented by a square matrix. It also needs to be unitary since being unitary preserves the unit length of the state vector $\ket{\Psi}$ after matrix multiplication \cite{umass} and the new state must meet the normalisation criteria $|\alpha|^2+|\beta|^2=1$. \\\\
+A quantum gate is the identity gate if the output state is identical to the input state. Thus, given the $2\times2$ identity matrix $I$, the output state will remain in the same state. 
 \[
 I=
 \begin{bmatrix}
@@ -126,15 +118,15 @@ I\ket{\Psi}=
 \end{bmatrix}
 =\ket{\Psi}
 \] \\
-The matrix multiplication yields a new qubit state which is identical to the input state. This kind of quantum gate can be represented by a single wire as the following:
+The matrix multiplication yields a new qubit state which is identical to the input state. This kind of quantum gate can be represented by the following diagram:
 \begin{figure}[htbp]
   \centering
-  $$\Qcircuit @C=5em @R=.7em { & \qw}$$
-  \caption{A quantum gate}
+  $$\Qcircuit @C=3em @R=.7em {& \gate{I} & \qw}$$
+  \caption{The Identity gate}
 \end{figure}
 
-\subsection{The NOT Gate}
-The NOT gate, represented by the negation matrix, flips its input into the opposite value. This rule indicates that if the initial state of the input is 0, the result will be 1 and if the initial state of the input is 1, the result will be 0. Thus, given the negation matrix $X$, each state will be inverted into its opposite value after the multiplication process.
+\subsection{The Pauli-X Gate}
+The Pauli-X gate, the quantum equivalent of the NOT gate, flips its input into the opposite value. This rule indicates that if the initial state of the input is 0, the result will be 1 and if the initial state of the input is 1, the result will be 0. Thus, given the negation matrix $X$, each state will be inverted into its opposite value after the multiplication process.
 \[
 X=
 \begin{bmatrix}
@@ -181,8 +173,8 @@ H\Psi=\frac{1}{\sqrt[]{2}}
     1 & -1 
 \end{bmatrix}
 \begin{bmatrix}
-    \beta \\
-    \alpha 
+    \alpha \\
+    \beta 
 \end{bmatrix}
 =\frac{1}{\sqrt[]{2}}
 \begin{bmatrix}
@@ -202,37 +194,9 @@ In order to explain the CNOT gate, it is necessary to understand the concept of 
 $$\ket{00}+\ket{01}+\ket{10}+\ket{11}$$
 Thus, its normalised superposition can be expressed as
 $$\ket{\Psi}=\alpha\ket{00}+\beta\ket{01}+\gamma\ket{10}+\delta\ket{11}$$
-This rule also needs to meet the condition $|\alpha|^2+|\beta|^2+|\gamma|^2+|\delta|^2=1$. Thus, given an arbitrary set of orthogonal column vectors, each vector represents a possible quantum state, it should yield a new column vector with multi-qubit states.
+In this case, the quantum state can be represented by a column vector with multi-qubit states as the following:
 \[
-\ket{00}=
-\begin{bmatrix}
-    1 \\
-    0 \\
-    0 \\
-    0
-\end{bmatrix}
-,\ket{01}=
-\begin{bmatrix}
-    0 \\
-    1 \\
-    0 \\
-    0
-\end{bmatrix}
-,\ket{10}=
-\begin{bmatrix}
-    0 \\
-    0 \\
-    1 \\
-    0
-\end{bmatrix}
-,\ket{11}=
-\begin{bmatrix}
-    0 \\
-    0 \\
-    0 \\
-    1
-\end{bmatrix}
-\ thus, \ket{\Psi}=
+ \ket{\Psi}=
 \begin{bmatrix}
     \alpha \\
     \beta \\
@@ -300,9 +264,35 @@ CNOT\ket{\Psi}=
 The following diagram illustrates the CNOT gate in the quantum circuit:
 \begin{figure}[htbp]
   \centering
-  $$\Qcircuit @C=2em @R=.7em {& \ctrl{1} & \targ & \qw \\ & \targ & \ctrl{-1} & \qw}$$
+  $$\Qcircuit @C=2em @R=.65em {& \ctrl{1} & \targ & \qw \\ & \targ & \ctrl{-1} & \qw}$$
   \caption{The CNOT gate}
 \end{figure}
+
+\newpage
+\subsection{Other Quantum Gates}
+The quantum gates mentioned above are all the basic quantum gates required for the LIQ$Ui\ket{}$ experiment. However, there still are other basic quantum gates as listed in the table below: \\
+\begin{center}
+\begin{tabular}{|*2{>{\centering\arraybackslash}p{.14\textwidth}|}*1{>{\centering\arraybackslash}p{.20\textwidth}|}*1{>{\centering\arraybackslash}p{.23\textwidth}|}}
+\hline
+\textbf{Type} & \textbf{Basis} & \textbf{Matrix} & \textbf{Diagram}\\
+\hline
+\[Pauli-Y\] & \[\{\ket{0},\ket{1}\}\] & \[\left[ \begin{array}{cc} 0 & -i  \\ i & 0 \end{array}\right]\] & \[\Qcircuit @C=3em @R=.7em {& \gate{Y} & \qw}\]\\
+\hline
+\[Pauli-Z\] & \[\{\ket{0},\ket{1}\}\] & \[\left[ \begin{array}{cc} 1 & 0  \\ 0 & -1 \end{array}\right]\] & \[\Qcircuit @C=3em @R=.7em {& \gate{Z} & \qw}\]\\
+\hline
+\[\begin{array}{c} \\ Swap \end{array}\] & \[\begin{array}{c} \\ \{\ket{00},\ket{01},  \\ \ket{10},\ket{11}\} \end{array}\] & \[\left[ \begin{array}{cccc} 1 & 0 & 0 & 0  \\ 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{array}\right]\] & \[\begin{array}{c} \\ \Qcircuit @C=3em @R=1.5em {& \qswap & \qw \\ & \qswap \qwx & \qw} \end{array}\]\\
+\hline
+\[e^{i\pi/2}\] & \[\{\ket{0},\ket{1}\}\] & \[\left[ \begin{array}{cc} 1 & 0  \\ 0 & i \end{array}\right]\] & \[\Qcircuit @C=3em @R=.7em {& \gate{S} & \qw}\]\\
+\hline
+\[e^{i\pi/2}\] & \[\{\ket{0},\ket{1}\}\] & \[\left[ \begin{array}{cc} 1 & 0  \\ 0 & e^{i\pi/4} \end{array}\right]\] & \[\Qcircuit @C=3em @R=.7em {& \gate{T} & \qw}\]\\
+\hline
+\[e^{i\pi/2}\] & \[\{\ket{0},\ket{1}\}\] & \[\left[ \begin{array}{cc} 1 & 0  \\ 0 & e^{i\pi/8} \end{array}\right]\] & \[\Qcircuit @C=3em @R=.7em {& \gate{R4} & \qw}\]\\
+\hline
+\end{tabular}
+\end{center}
+\begin{center}
+Table 3.1: Other quantum gates 
+\end{center}
 
 \newpage
 \section{Unitary Transformation}
@@ -312,7 +302,12 @@ In this case, $\ket{\Psi}$ is a quantum state and $M$ is a matrix. $M$ is unitar
 
 \section{Measurements}
 Contrary to the concept of unitary transformations, measurements are not reversible and therefore information destructive \cite{non-qc}. This kind of operation is effective in retrieving classical information back from quantum information but may also interfere or destroy the quantum state \cite{measure}. \\\\
-For example, given the quantum state $\ket{\Psi}=\alpha\ket{0}+\beta\ket{1}$, the state $\ket{0}$ with a probability $\alpha^2$ and the state $\ket{1}$ with a probability $\beta^2$ will be used to measure the actual state $\ket{\Psi}$. The qubit will be determined to be in one of both states ($\ket{0}$ or $\ket{1}$) until a new transformation occurs. To make the example more concrete, given the qubit state $\ket{\Psi}=(+0.6)+(-0.8)$, the probability of the result being $\ket{0}$ is $\alpha^2=0.6^2=36\%$ and the probability of the result being $\ket{1}$ is $\beta^2=-0.8^2=64\%$.
+For example, given the quantum state $\ket{\Psi}=\alpha\ket{0}+\beta\ket{1}$, the state $\ket{0}$ with a probability $\alpha^2$ and the state $\ket{1}$ with a probability $\beta^2$ will be used to measure the actual state $\ket{\Psi}$. The qubit will be determined to be in one of both states ($\ket{0}$ or $\ket{1}$) until a new transformation occurs. To make the example more concrete, given the qubit state $\ket{\Psi}=(+0.6)+(-0.8)$, the probability of the result being $\ket{0}$ is $\alpha^2=0.6^2=36\%$ and the probability of the result being $\ket{1}$ is $\beta^2=-0.8^2=64\%$. The following diagram illustrates a single qubit measurement gate in the quantum circuit:
+\begin{figure}[htbp]
+  \centering
+  $$\Qcircuit @C=3em @R=.7em {& \meter & \cw}$$
+  \caption{A single qubit measurement gate}
+\end{figure}
 
 %\begingroup
 %\renewcommand{\cleardoublepage}{}
