@@ -80,10 +80,10 @@ $$\equiv\sum_{x=0}^{7}\ket{x}$$
 
 \section{Quantum Gates}
 
-In this section, matrix transformations will be used to demonstrate the concept of each quantum gate. According to the qubit theory, the basis states can be represented by
+This section will demonstrate the concepts of basic quantum gates using matrix transformations. Therefore, it is necessary to represent a quantum state in the form of a column vector. According to the qubit theory, the basis states can be represented by
 $$\ket{0}$$
 $$\ket{1}$$
-In this case, the state $\ket{0}$ and $\ket{1}$ are the representations of logical zero and logical one respectively. The qubit's state $\ket{\Psi}$ with its superposition can be represented by the linear combination of both basis states and a vector as the following:
+In this case, the states $\ket{0}$ and $\ket{1}$ are the representations of logical zero and logical one respectively. The qubit's actual state $\ket{\Psi}$ with its superposition can be represented by a linear combination of both basis states which can be converted into a column vector as the following:
 \[
 \ket{\Psi}=\alpha\ket{0}+\beta\ket{1}=
 \begin{bmatrix}
@@ -118,7 +118,7 @@ I\ket{\Psi}=
 \end{bmatrix}
 =\ket{\Psi}
 \] \\
-The matrix multiplication yields a new qubit state which is identical to the input state. This kind of quantum gate can be represented by the following diagram:
+The matrix multiplication yields a new qubit state which is identical to the input state. The identity gate can be represented by the following diagram:
 \begin{figure}[htbp]
   \centering
   $$\Qcircuit @C=3em @R=.7em {& \gate{I} & \qw}$$
@@ -272,7 +272,7 @@ The following diagram illustrates the CNOT gate in the quantum circuit:
 \subsection{Other Quantum Gates}
 The quantum gates mentioned above are all the basic quantum gates required for the LIQ$Ui\ket{}$ experiment. However, there still are other basic quantum gates as listed in the table below: \\
 \begin{center}
-\begin{tabular}{|*2{>{\centering\arraybackslash}p{.14\textwidth}|}*1{>{\centering\arraybackslash}p{.20\textwidth}|}*1{>{\centering\arraybackslash}p{.23\textwidth}|}}
+\begin{tabular}{|*2{>{\centering\arraybackslash}p{.18\textwidth}|}*1{>{\centering\arraybackslash}p{.23\textwidth}|}*1{>{\centering\arraybackslash}p{.23\textwidth}|}}
 \hline
 \textbf{Type} & \textbf{Basis} & \textbf{Matrix} & \textbf{Diagram}\\
 \hline
@@ -280,21 +280,18 @@ The quantum gates mentioned above are all the basic quantum gates required for t
 \hline
 \[Pauli-Z\] & \[\{\ket{0},\ket{1}\}\] & \[\left[ \begin{array}{cc} 1 & 0  \\ 0 & -1 \end{array}\right]\] & \[\Qcircuit @C=3em @R=.7em {& \gate{Z} & \qw}\]\\
 \hline
-\[\begin{array}{c} \\ Swap \end{array}\] & \[\begin{array}{c} \\ \{\ket{00},\ket{01},  \\ \ket{10},\ket{11}\} \end{array}\] & \[\left[ \begin{array}{cccc} 1 & 0 & 0 & 0  \\ 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{array}\right]\] & \[\begin{array}{c} \\ \Qcircuit @C=3em @R=1.5em {& \qswap & \qw \\ & \qswap \qwx & \qw} \end{array}\]\\
+\[Phase \ Shift\] & \[\{\ket{0},\ket{1}\}\] & \[\left[ \begin{array}{cc} 1 & 0  \\ 0 & e^{i\phi} \end{array}\right]\] & \[\Qcircuit @C=3em @R=.7em {& \gate{R_\phi} & \qw}\]\\
 \hline
-\[e^{i\pi/2}\] & \[\{\ket{0},\ket{1}\}\] & \[\left[ \begin{array}{cc} 1 & 0  \\ 0 & i \end{array}\right]\] & \[\Qcircuit @C=3em @R=.7em {& \gate{S} & \qw}\]\\
+\[\begin{array}{c} \\ Swap \end{array}\] & \[\begin{array}{c} \\ \{\ket{00},\ket{01},  \\ \ket{10},\ket{11}\} \end{array}\] & \[\left[ \begin{array}{cccc} 1 & 0 & 0 & 0  \\ 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{array}\right]\] & \[\begin{array}{c} \\ \Qcircuit @C=3.5em @R=1.65em {& \qswap & \qw \\ & \qswap \qwx & \qw} \end{array}\]\\
 \hline
-\[e^{i\pi/2}\] & \[\{\ket{0},\ket{1}\}\] & \[\left[ \begin{array}{cc} 1 & 0  \\ 0 & e^{i\pi/4} \end{array}\right]\] & \[\Qcircuit @C=3em @R=.7em {& \gate{T} & \qw}\]\\
-\hline
-\[e^{i\pi/2}\] & \[\{\ket{0},\ket{1}\}\] & \[\left[ \begin{array}{cc} 1 & 0  \\ 0 & e^{i\pi/8} \end{array}\right]\] & \[\Qcircuit @C=3em @R=.7em {& \gate{R4} & \qw}\]\\
+\[\begin{array}{c} \\ Controlled-U \end{array}\] & \[\begin{array}{c} \\ \{\ket{00},\ket{01},  \\ \ket{10},\ket{11}\} \end{array}\] & \[\left[ \begin{array}{cccc} 1 & 0 & 0 & 0  \\ 0 & 1 & 0 & 0 \\ 0 & 0 & x_{00} & x_{01} \\ 0 & 0 & x_{10} & x_{11} \end{array}\right]\] & \[\begin{array}{c} \\ \Qcircuit @C=3em @R=.9em {& \ctrl{1} & \qw \\ & \gate{U} & \qw} \end{array}\]\\
 \hline
 \end{tabular}
 \end{center}
 \begin{center}
-Table 3.1: Other quantum gates 
+Table 3.1: Other basic quantum gates 
 \end{center}
 
-\newpage
 \section{Unitary Transformation}
 As demonstrated in the quantum gates section, unitary transformations can be justified as matrix operations on vectors. This kind of quantum state manipulation can be represented as the following:
 $$\ket{\Psi}\mapsto M\cdot\ket{\Psi}$$
@@ -309,13 +306,11 @@ For example, given the quantum state $\ket{\Psi}=\alpha\ket{0}+\beta\ket{1}$, th
   \caption{A single qubit measurement gate}
 \end{figure}
 
-%\begingroup
-%\renewcommand{\cleardoublepage}{}
-%\renewcommand{\clearpage}{}
-%\chapter{Applications}
-%\endgroup
-
+\begingroup
+\renewcommand{\cleardoublepage}{}
+\renewcommand{\clearpage}{}
 \chapter{Applications}
+\endgroup
 
 Since quantum computing is relatively a new area of study, many of its real-world applications are not yet to be seen. Nevertheless, this young field has been being explored by researchers who acknowledge its possibility in advancing the area of high-performance computing. This section delineates potential applications of quantum computing in cryptography along with its classical quantum algorithms, including Shor and Grover's algorithms.
 
@@ -338,7 +333,13 @@ $$\frac{1}{\sqrt[]{2^n}}\sum_{x=0}^{n-1}\ket{x,P(x)}$$
 The next step is to invert amplitude of $a_j$ to $-a_j$ such that $P(x_j)=1$ and apply inversion to increase amplitude of $x_j$ with $P(x_j)=1$. The process will repeat the $P(x_i)$ calculation step and the amplitude amplification process for $\frac{\pi}{4}\sqrt[]{2^n}$ times (this number is used to ensure that the execution terminates when the desired state is reached) and then measure the end result. \\\\
 In order to achieve such performance, Grover's algorithm relies on the superposition of qubit states. Additionally, it also utilises the amplitude amplification algorithms which are unique to quantum computing to solve the problem \cite{umass}.
 
+\begingroup
+\renewcommand{\cleardoublepage}{}
+\renewcommand{\clearpage}{}
 \chapter{LIQ$Ui\ket{}$}
+\endgroup
+
+%\chapter{LIQ$Ui\ket{}$}
 
 \section{Introduction to LIQ$Ui\ket{}$}
 Language-Integrated Quantum Operations (LIQ$Ui\ket{}$) is a modular software platform for quantum computing developed by the Quantum Architectures and Computation Group (QuArC) \cite{liquid-overview}. It includes an embedded and domain-specific language designed essentially for quantum algorithms with F\# as the primary programming language. The software also allows the simulation of quantum algorithms and circuits along with supporting the extraction of a circuit data structure which is useful for circuit optimisation, gate replacement, quantum error correction, rendering or export \cite{liquid-overview,liquid}. \\\\
@@ -385,6 +386,7 @@ The result should be obvious since the initial state of the qubit is 0 and there
 0:0000.1/=============== Logging to: Liquid.log closed ================
 \end{verbatim}
 
+\newpage
 \subsection{The Hadamard Gate}
 This program is the first actual quantum program. It uses the Hadamard gate to transform a given input state into a superposition. The code should remain the same as the previous section but the quantum function should be modified as follows:
 \begin{verbatim}
@@ -485,7 +487,7 @@ The \texttt{RenderHT} function produces a diagram of the current quantum circuit
 \caption{The circuit after being optimised}
 \end{figure}
 
-\newpage
+%\newpage
 \section{Built-in Samples}
 LIQ$Ui\ket{}$ contains a number of built-in samples for some of the specific quantum algorithms, including Shor’s algorithm, quantum teleportation, quantum error correction, quantum linear algebra, quantum associated memory and the simulation of the ground state energy of a molecule \cite{liquid-manual}. These executable samples gives users a glimpse of what LIQ$Ui\ket{}$ can do and application areas that it has been applied to. This section focuses on three built-in examples which are relevant to the concepts and applications explained in this report, including entanglement, Shor’s algorithm and quantum associative memory (utilising Grover’s algorithm) (See Appendix C for the list of all built-in samples).
 
@@ -515,7 +517,6 @@ Apart from above example, LIQ$Ui\ket{}$ also provides another two functions whic
 Shor's polynomial-time prime factorisation algorithm is one of the sophisticated built-in tests among other samples. The command \texttt{liquid \_\_Shor(n,true)} can be used to run the algorithm. The command takes two parameters. The first is the integer to be factored and the second is the option whether to optimise (by combining) the quantum circuit. The following is the result of prime factorisation using Shor's algorithm with 21 as an input:
 \begin{verbatim}
 0:0000.0/=============== Logging to: Liquid.log opened ================
-0:0000.0/======== Doing Shor Round =========
 0:0000.0/      21 = N = Number to factor
 0:0000.0/       2 = a = coPrime of N
 0:0000.0/       5 = n = number of bits for N
